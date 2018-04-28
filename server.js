@@ -1,28 +1,39 @@
-// npm packages
-var express = require('express')
-var bodyparser = require('body-parser')
-var path = require('path')
-var morgan = require('morgan')
-var expresshbs = require('express-handlebars')
+// *****************************************************************************
+// Server.js - This file is the initial starting point for the Node/Express server.
+//
+// ******************************************************************************
+// *** Dependencies
+// =============================================================
+var express = require("express");
+var bodyParser = require("body-parser");
 
-// new express app
-var app = express()
+// Sets up the Express App
+// =============================================================
+var app = express();
+var PORT = process.env.PORT || 8080;
 
-// middleware
-app.use(morgan('dev'))
-app.engine('hbs', expresshbs({defaultLayout: 'main', extname: '.hbs'}))
-app.set('view engine', 'hbs')
-app.use(express.static(path.join(__dirname, 'public')))
-app.use(bodyparser.urlencoded({ extended: true }))
-app.use(bodyparser.json())
+// Requiring our models for syncing
+var db = require("./models");
 
-// your code here...
-app.get('/', function (req, res) {
-  res.render('index')
-})
+// Sets up the Express app to handle data parsing
 
-var PORT = process.env.PORT || 3000
-// listening port
-app.listen(PORT, function (e) {
-  if (e) throw e
-})
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: true }));
+// parse application/json
+app.use(bodyParser.json());
+
+// Static directory
+app.use(express.static("public"));
+
+// Routes
+// =============================================================
+require("./routes/api-routes.js")(app);
+require("./routes/html-routes.js")(app);
+
+// Syncing our sequelize models and then starting our Express app
+// =============================================================
+db.sequelize.sync({ force: true }).then(function() {
+  app.listen(PORT, function() {
+    console.log("App listening on PORT " + PORT);
+  });
+});
