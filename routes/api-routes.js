@@ -50,7 +50,10 @@ module.exports = function(app) {
     db.resources.create({
       title: req.body.title,
       body: req.body.body,
-      category: req.body.category
+      category: req.body.category,
+      link : req.body.link,
+      author : req.body.author
+
     })
       .then(function(dbPost) {
         res.json(dbPost);
@@ -58,6 +61,8 @@ module.exports = function(app) {
   });
 
   // DELETE route for deleting posts
+
+  //  TO Be changed to  DOWN VOTE
   app.delete("/api/posts/:id", function(req, res) {
     db.Post.destroy({
       where: {

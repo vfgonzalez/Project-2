@@ -16,21 +16,28 @@ $(document).ready(function() {
   var bodyInput = $("#description");
   var titleInput = $("#title");
   var cmsForm = $("#post");
+  var authorInput = $("#author");
+  var linkInput = $('#link');
   var postCategorySelect = $("#category");
+
   // Giving the postCategorySelect a default value
   postCategorySelect.val("Personal");
   // Adding an event listener for when the form is submitted
   $(cmsForm).on("submit", function handleFormSubmit(event) {
     event.preventDefault();
+    console.log(" Submit Button Works");
+    
     // Wont submit the post if we are missing a body or a title
-    if (!titleInput.val().trim() || !bodyInput.val().trim()) {
-      return;
-    }
+    // if (!titleInput.val().trim() || !bodyInput.val().trim()) {
+    //   return;
+    // }
     // Constructing a newPost object to hand to the database
     var newPost = {
       title: titleInput.val(),
-      body: bodyInput.val(),
-      category: postCategorySelect.val()
+      descrption: bodyInput.val(),
+      category: postCategorySelect.val(),
+      author : authorInput.val(),
+      link : linkInput.val() 
     };
 
     console.log(newPost);
@@ -61,6 +68,8 @@ $(document).ready(function() {
         titleInput.val(data.title);
         bodyInput.val(data.description);
         postCategorySelect.val(data.category);
+        authorInput.val(data.author);
+        link.val(data.link)
         // If we have a post with this id, set a flag for us to know to update the post
         // when we hit submit
         updating = true;

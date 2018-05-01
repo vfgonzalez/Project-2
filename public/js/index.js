@@ -6,7 +6,7 @@ $(document).ready(function() {
   $(document).on("click", "button.delete", handlePostDelete);
   $(document).on("click", "button.edit", handlePostEdit);
   postCategorySelect.on("change", handleCategoryChange);
-  var resources;
+  var post;
 
   // This function grabs posts from the database and updates the view
   function getPosts(category) {
@@ -15,9 +15,9 @@ $(document).ready(function() {
       categoryString = "/category/" + categoryString;
     }
     $.get("/api/posts" + categoryString, function(data) {
-      resources = data;
       console.log("Posts Rendering:::", data);
-      if (!resources || !resources.length) {
+      post = data;
+      if (!post || !post.length) {
         displayEmpty();
       }
       else {
@@ -27,15 +27,15 @@ $(document).ready(function() {
   }
 
   // This function does an API call to delete posts
-  function deletePost(id) {
-    $.ajax({
-      method: "DELETE",
-      url: "/api/posts/" + id
-    })
-      .then(function() {
-        getPosts(postCategorySelect.val());
-      });
-  }
+  // function deletePost(id) {
+  //   $.ajax({
+  //     method: "DELETE",
+  //     url: "/api/posts/" + id
+  //   })
+  //     .then(function() {
+  //       getPosts(postCategorySelect.val());
+  //     });
+  // }
 
   // Getting the initial list of posts
   getPosts();
@@ -44,8 +44,8 @@ $(document).ready(function() {
   function initializeRows() {
     blogContainer.empty();
     var postsToAdd = [];
-    for (var i = 0; i < posts.length; i++) {
-      postsToAdd.push(createNewRow(posts[i]));
+    for (var i = 0; i < post.length; i++) {
+      postsToAdd.push(createNewRow(post[i]));
     }
     blogContainer.append(postsToAdd);
   }
@@ -65,6 +65,8 @@ $(document).ready(function() {
     var newPostTitle = $("<h2>");
     var newPostDate = $("<small>");
     var newPostCategory = $("<h5>");
+    var newPostLink = $("<h5>")
+    newPostLink.text(post.link)
     newPostCategory.text(post.category);
     newPostCategory.css({
       float: "right",
@@ -76,7 +78,7 @@ $(document).ready(function() {
     newPostCardBody.addClass("card-body");
     var newPostBody = $("<p>");
     newPostTitle.text(post.title + " ");
-    newPostBody.text(post.body);
+    newPostBody.text(post.description);
     var formattedDate = new Date(post.createdAt);
     formattedDate = moment(formattedDate).format("MMMM Do YYYY, h:mm:ss a");
     newPostDate.text(formattedDate);
@@ -86,6 +88,7 @@ $(document).ready(function() {
     newPostCardHeading.append(newPostTitle);
     newPostCardHeading.append(newPostCategory);
     newPostCardBody.append(newPostBody);
+    newPostCardBody.append(newPostLink);
     newPostCard.append(newPostCardHeading);
     newPostCard.append(newPostCardBody);
     newPostCard.data("post", post);
