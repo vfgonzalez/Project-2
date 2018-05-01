@@ -1,4 +1,4 @@
-/* button.submit {
+button.submit {
   float: right;
 }
 
@@ -14,4 +14,4 @@ form#cms {
 button.edit {
   float: right;
   margin: 5px;
-} */
+}
