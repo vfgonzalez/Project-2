@@ -13,9 +13,9 @@ $(document).ready(function() {
   }
 
   // Getting jQuery references to the post body, title, form, and category select
-  var bodyInput = $("#body");
+  var bodyInput = $("#description");
   var titleInput = $("#title");
-  var cmsForm = $("#cms");
+  var cmsForm = $("#post");
   var postCategorySelect = $("#category");
   // Giving the postCategorySelect a default value
   postCategorySelect.val("Personal");
@@ -28,8 +28,8 @@ $(document).ready(function() {
     }
     // Constructing a newPost object to hand to the database
     var newPost = {
-      title: titleInput.val().trim(),
-      body: bodyInput.val().trim(),
+      title: titleInput.val(),
+      body: bodyInput.val(),
       category: postCategorySelect.val()
     };
 
@@ -49,7 +49,7 @@ $(document).ready(function() {
   // Submits a new post and brings user to blog page upon completion
   function submitPost(Post) {
     $.post("/api/posts/", Post, function() {
-      window.location.href = "/blog";
+      window.location.href = "/index";
     });
   }
 
@@ -59,7 +59,7 @@ $(document).ready(function() {
       if (data) {
         // If this post exists, prefill our cms forms with its data
         titleInput.val(data.title);
-        bodyInput.val(data.body);
+        bodyInput.val(data.description);
         postCategorySelect.val(data.category);
         // If we have a post with this id, set a flag for us to know to update the post
         // when we hit submit

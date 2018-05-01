@@ -6,7 +6,7 @@ $(document).ready(function() {
   $(document).on("click", "button.delete", handlePostDelete);
   $(document).on("click", "button.edit", handlePostEdit);
   postCategorySelect.on("change", handleCategoryChange);
-  var posts;
+  var resources;
 
   // This function grabs posts from the database and updates the view
   function getPosts(category) {
@@ -15,9 +15,9 @@ $(document).ready(function() {
       categoryString = "/category/" + categoryString;
     }
     $.get("/api/posts" + categoryString, function(data) {
-      console.log("Posts", data);
-      posts = data;
-      if (!posts || !posts.length) {
+      resources = data;
+      console.log("Posts Rendering:::", data);
+      if (!resources || !resources.length) {
         displayEmpty();
       }
       else {
@@ -57,10 +57,10 @@ $(document).ready(function() {
     var newPostCardHeading = $("<div>");
     newPostCardHeading.addClass("card-header");
     var deleteBtn = $("<button>");
-    deleteBtn.text("x");
+    deleteBtn.text("Down");
     deleteBtn.addClass("delete btn btn-danger");
     var editBtn = $("<button>");
-    editBtn.text("EDIT");
+    editBtn.text("Upvote");
     editBtn.addClass("edit btn btn-default");
     var newPostTitle = $("<h2>");
     var newPostDate = $("<small>");
@@ -117,7 +117,7 @@ $(document).ready(function() {
     blogContainer.empty();
     var messageH2 = $("<h2>");
     messageH2.css({ "text-align": "center", "margin-top": "50px" });
-    messageH2.html("No posts yet for this category, navigate <a href='/cms'>here</a> in order to create a new post.");
+    messageH2.html("No posts yet for this category, navigate <a href='/post'>here</a> in order to create a new post.");
     blogContainer.append(messageH2);
   }
 

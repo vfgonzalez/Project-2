@@ -14,7 +14,7 @@ module.exports = function(app) {
 
   // GET route for getting all of the posts
   app.get("/api/posts/", function(req, res) {
-    db.Post.findAll({})
+    db.resources.findAll({})
       .then(function(dbPost) {
         res.json(dbPost);
       });
@@ -22,7 +22,7 @@ module.exports = function(app) {
 
   // Get route for returning posts of a specific category
   app.get("/api/posts/category/:category", function(req, res) {
-    db.Post.findAll({
+    db.resources.findAll({
       where: {
         category: req.params.category
       }
@@ -34,7 +34,7 @@ module.exports = function(app) {
 
   // Get route for retrieving a single post
   app.get("/api/posts/:id", function(req, res) {
-    db.Post.findOne({
+    db.resources.findOne({
       where: {
         id: req.params.id
       }
@@ -47,7 +47,7 @@ module.exports = function(app) {
   // POST route for saving a new post
   app.post("/api/posts", function(req, res) {
     console.log(req.body);
-    db.Post.create({
+    db.resources.create({
       title: req.body.title,
       body: req.body.body,
       category: req.body.category

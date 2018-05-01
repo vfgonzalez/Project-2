@@ -1,5 +1,12 @@
 module.exports = function(sequelize, DataTypes) {
-  var Post = sequelize.define("Post", {
+  var resources = sequelize.define("resources", {
+    link: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        len: [1]
+      }
+    },
     title: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -7,7 +14,7 @@ module.exports = function(sequelize, DataTypes) {
         len: [1]
       }
     },
-    body: {
+    description: {
       type: DataTypes.TEXT,
       allowNull: false,
       validate: {
@@ -16,8 +23,16 @@ module.exports = function(sequelize, DataTypes) {
     },
     category: {
       type: DataTypes.STRING,
-      defaultValue: "Personal"
+      allowNull: false
+    },
+    voteCount: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0
+    },
+    author: {
+      type: DataTypes.STRING,
+      allowNull: false
     }
   });
-  return Post;
+  return resources;
 };
