@@ -24,8 +24,10 @@ $(document).ready(function() {
   postCategorySelect.val("Personal");
   // Adding an event listener for when the form is submitted
   $(cmsForm).on("submit", function handleFormSubmit(event) {
-    event.preventDefault();
-    console.log(" Submit Button Works");
+    
+    
+    event.preventDefault()
+    
     
     // Wont submit the post if we are missing a body or a title
     // if (!titleInput.val().trim() || !bodyInput.val().trim()) {
@@ -34,13 +36,13 @@ $(document).ready(function() {
     // Constructing a newPost object to hand to the database
     var newPost = {
       title: titleInput.val(),
-      descrption: bodyInput.val(),
+      description: bodyInput.val(),
       category: postCategorySelect.val(),
       author : authorInput.val(),
       link : linkInput.val() 
     };
-
-    console.log(newPost);
+    // return newPost
+    console.log("Retreived Data:::: "+ newPost);
 
     // If we're updating a post run updatePost to update a post
     // Otherwise run submitPost to create a whole new post
@@ -51,6 +53,8 @@ $(document).ready(function() {
     else {
       submitPost(newPost);
     }
+    
+    
   });
 
   // Submits a new post and brings user to blog page upon completion
@@ -58,6 +62,8 @@ $(document).ready(function() {
     $.post("/api/posts/", Post, function() {
       window.location.href = "/index";
     });
+    console.log(Post);
+    
   }
 
   // Gets post data for a post if we're editing

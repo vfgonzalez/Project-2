@@ -49,7 +49,7 @@ module.exports = function(app) {
     console.log(req.body);
     db.resources.create({
       title: req.body.title,
-      body: req.body.body,
+      description: req.body.description,
       category: req.body.category,
       link : req.body.link,
       author : req.body.author

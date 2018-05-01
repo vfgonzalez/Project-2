@@ -59,36 +59,58 @@ $(document).ready(function() {
     var deleteBtn = $("<button>");
     deleteBtn.text("Down");
     deleteBtn.addClass("delete btn btn-danger");
+    var newVoteCount = $("<span>")
+    newVoteCount.text(post.voteCount)
+    newVoteCount.css({
+      float: "right",
+      "clear": "both"
+    })
     var editBtn = $("<button>");
     editBtn.text("Upvote");
-    editBtn.addClass("edit btn btn-default");
+    editBtn.addClass("edit btn btn-default btn-outline-success");
     var newPostTitle = $("<h2>");
     var newPostDate = $("<small>");
     var newPostCategory = $("<h5>");
-    var newPostLink = $("<h5>")
+    var newPostLink = $("<a href="+post.link+" target='_blank'>")
     newPostLink.text(post.link)
     newPostCategory.text(post.category);
     newPostCategory.css({
-      float: "right",
+      float: "left",
       "font-weight": "700",
       "margin-top":
-      "-15px"
+      "-5px",
+      "color": "blue"
     });
     var newPostCardBody = $("<div>");
     newPostCardBody.addClass("card-body");
     var newPostBody = $("<p>");
+    var newPostAuthor = $("<span>")
+    newPostAuthor.text("   - posted by: "+post.author)
+    newPostAuthor.css({
+      "font-style" : "italic",
+      "font-weight": "strong"
+    })
     newPostTitle.text(post.title + " ");
     newPostBody.text(post.description);
     var formattedDate = new Date(post.createdAt);
-    formattedDate = moment(formattedDate).format("MMMM Do YYYY, h:mm:ss a");
+    formattedDate = moment(formattedDate).format("MMMM Do YYYY, h:mm a");
     newPostDate.text(formattedDate);
+    newPostDate.css({
+      float: "right",
+      "font-weight": "100",
+      "margin-top":
+      "20px"
+    });
     newPostTitle.append(newPostDate);
     newPostCardHeading.append(deleteBtn);
     newPostCardHeading.append(editBtn);
+    newPostCardHeading.append(newVoteCount)
     newPostCardHeading.append(newPostTitle);
     newPostCardHeading.append(newPostCategory);
     newPostCardBody.append(newPostBody);
     newPostCardBody.append(newPostLink);
+    newPostCardBody.append(newPostAuthor);
+
     newPostCard.append(newPostCardHeading);
     newPostCard.append(newPostCardBody);
     newPostCard.data("post", post);
