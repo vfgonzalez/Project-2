@@ -1,8 +1,10 @@
+
 -- Database Creator HERE::::
 
 
 CREATE DATABASE project2_db;
 USE project2_db;
+
 
 CREATE TABLE resources
 (
@@ -17,6 +19,8 @@ CREATE TABLE resources
 	updatedAt TIMESTAMP NOT NULL,
 	PRIMARY KEY(id)
 );
+
+
 
 
 
