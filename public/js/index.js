@@ -47,7 +47,8 @@ $(document).ready(function() {
     for (var i = 0; i < post.length; i++) {
       postsToAdd.push(createNewRow(post[i]));
     }
-    blogContainer.append(postsToAdd);
+    var reversePost = postsToAdd.reverse()
+    blogContainer.append(reversePost);
   }
 
   // This function constructs a post's HTML
