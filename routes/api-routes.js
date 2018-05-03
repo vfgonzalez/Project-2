@@ -7,6 +7,7 @@
 
 // Requiring our Todo model
 var db = require("../models");
+var sequelize = require('sequelize')
 
 // Routes
 // =============================================================
@@ -78,15 +79,15 @@ module.exports = function(app) {
   app.put("/api/posts/:id", function (req, res) {
     console.log('backend: ' + req.params.id)
     // console.log('backend2: ' + req.body.id)
-    db.resources.update({
-      voteCount: 5,
-    }, {
+    db.resources.update({ voteCount: sequelize.literal('voteCount + 1') }, {
         where: {
           id: req.params.id
         }
       }).then(function (dbPost) {
         console.log('dbPost: ' + dbPost)
         res.json(dbPost);
+      }).catch(function (error) {
+        console.log(error)
       });
   });
 
