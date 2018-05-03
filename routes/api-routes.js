@@ -61,15 +61,17 @@ module.exports = function(app) {
   });
 
   // DELETE route for deleting posts
-
+// create var 'decOne' to decrement voteCount
   //  TO Be changed to  DOWN VOTE
-  app.delete("/api/posts/:id", function(req, res) {
-    db.Post.destroy({
-      where: {
-        id: req.params.id
-      }
-    })
-      .then(function(dbPost) {
+  app.put("/api/posts/:id", function (req, res) {
+    console.log('backend ' + req.params.id)
+    db.resources.update({
+      voteCount: 3
+    }, {
+        where: {
+          id: req.params.id
+        }
+      }).then(function (dbPost) {
         res.json(dbPost);
       });
   });
