@@ -77,8 +77,6 @@ module.exports = function(app) {
 
   // PUT route for updating UP VOTE
   app.put("/api/posts/:id", function (req, res) {
-    console.log('backend: ' + req.params.id)
-    // console.log('backend2: ' + req.body.id)
     db.resources.update({ voteCount: sequelize.literal('voteCount + 1') }, {
         where: {
           id: req.params.id

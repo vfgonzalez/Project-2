@@ -71,7 +71,6 @@ $(document).ready(function() {
     var upBtn = $("<button>");
     upBtn.text("Up");
     upBtn.addClass("upBtn btn btn-default btn-outline-success");
-
     var newPostTitle = $("<h2>");
     var newPostDate = $("<small>");
     var newPostCategory = $("<h5>");
@@ -114,19 +113,11 @@ $(document).ready(function() {
     newPostCardBody.append(newPostBody);
     newPostCardBody.append(newPostLink);
     newPostCardBody.append(newPostAuthor);
-
     newPostCard.append(newPostCardHeading);
     newPostCard.append(newPostCardBody);
     newPostCard.data("post", post);
     return newPostCard;
   }
-
-
-
-
-
-
-
 
   // This function figures out which post we want to delete and then calls
   // deletePost
@@ -149,15 +140,13 @@ $(document).ready(function() {
       });
   }
 
-  // This function figures out which post we want to upvote and takes it to the
-  // Appropriate url
+  // This function finds id of the voted post, and calls the put request function
   function handlePostUpvote() {
     console.log('Upvote Button Pressed')
     var currentPost = $(this)
       .parent()
       .parent()
       .data("post");
-    // window.location.href = "/cms?post_id=" + currentPost.id;
     console.log('post id: ' + currentPost.id)
     upVotePost(currentPost.id)
   }
@@ -169,8 +158,8 @@ $(document).ready(function() {
       url: "/api/posts/" + id
     })
       .then(function() {
-        getPosts(postCategorySelect.val());
-      });
+        getPosts(postCategorySelect.val())
+      })
   }
 
   // This function displays a message when there are no posts
@@ -187,5 +176,4 @@ $(document).ready(function() {
     var newPostCategory = $(this).val();
     getPosts(newPostCategory);
   }
-
 });
