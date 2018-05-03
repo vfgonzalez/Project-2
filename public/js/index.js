@@ -49,10 +49,12 @@ $(document).ready(function() {
   function initializeRows() {
     blogContainer.empty();
     var postsToAdd = [];
+    var reversePoststoAdd
     for (var i = 0; i < post.length; i++) {
       postsToAdd.push(createNewRow(post[i]));
     }
-    blogContainer.append(postsToAdd);
+    reversePoststoAdd = postsToAdd.reverse()
+    blogContainer.append(reversePoststoAdd);
   }
 
   // This function constructs a post's HTML
@@ -84,7 +86,7 @@ $(document).ready(function() {
     upBtn.addClass("upBtn btn btn-default btn-outline-success");
 
 
-    });
+    
     // Added attribute id 'voteCounter' to newVoteCount
     newVoteCount.attr('id', 'voteCounter');
     var editBtn = $("<button>");
@@ -116,7 +118,7 @@ $(document).ready(function() {
     newPostTitle.text(post.title + " ");
     newPostBody.text(post.description);
     var formattedDate = new Date(post.createdAt);
-    formattedDate = moment(formattedDate).format("MMMM Do YYYY, h:mm a");
+    formattedDate = moment(formattedDate).format("MMMM Do YYYY");
     newPostDate.text(formattedDate);
     newPostDate.css({
       float: "right",
