@@ -68,7 +68,7 @@ $(document).ready(function() {
     downVoteBtn.addClass("downVote btn btn-danger");
     $('#downVoteBtn').on('click', function () {
       Post.voteCount--
-    });
+    })
     downVoteBtn.attr("id", "down");
     
     
@@ -147,8 +147,6 @@ $(document).ready(function() {
     return newPostCard;
 
   }
-console.log(editBtn);
-
 
   // This function figures out which post we want to downvote and then calls
   // downvote
@@ -210,22 +208,13 @@ console.log(editBtn);
     var newPostCategory = $(this).val();
     getPosts(newPostCategory);
   }
-
-  // <<<IDEAL>>> code for what data transfer from front end to server looks like  
-  $(".downVoteBtn").on("click", function () {
-    // needs id, "$(this) refers to button"
-    var id = $(this).attr("id");
-    var counter = 1;
-    $.ajax("/api/posts/" + id, {
-      type: "PUT",
-      data: counter
-    }).done(function () {
-      console.log("data has been sent");
-    }
-    );
-  })
   
 });
+
+
+
+
+
 
 
 
