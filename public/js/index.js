@@ -101,6 +101,7 @@ $(document).ready(function() {
       "margin-top":
       "20px"
     });
+
     newPostTitle.append(newPostDate);
     newPostCardHeading.append(deleteBtn);
     newPostCardHeading.append(editBtn);
@@ -110,11 +111,12 @@ $(document).ready(function() {
     newPostCardBody.append(newPostBody);
     newPostCardBody.append(newPostLink);
     newPostCardBody.append(newPostAuthor);
-
+    
     newPostCard.append(newPostCardHeading);
     newPostCard.append(newPostCardBody);
     newPostCard.data("post", post);
     return newPostCard;
+
   }
 
   // This function figures out which post we want to delete and then calls
@@ -153,3 +155,6 @@ $(document).ready(function() {
   }
 
 });
+
+
+
