@@ -7,7 +7,9 @@
 
 // Requiring our Todo model
 var db = require("../models");
+
 var sequelize = require('sequelize');
+
 
 // Routes
 // =============================================================
@@ -64,6 +66,7 @@ module.exports = function(app) {
   // DELETE route for deleting posts
 // create var 'decOne' to decrement voteCount
   //  TO Be changed to  DOWN VOTE
+
   app.put("/api/posts/:id", function (req, res) {
     console.log('backend ' + req.params.id)
     db.resources.update({
@@ -77,19 +80,18 @@ module.exports = function(app) {
       });
   });
 
+
   // PUT route for updating UP VOTE
   app.put("/api/posts/:id", function (req, res) {
-    console.log('backend: ' + req.params.id)
-    // console.log('backend2: ' + req.body.id)
-    db.resources.update({
-      voteCount: 5,
-    }, {
+    db.resources.update({ voteCount: sequelize.literal('voteCount + 1') }, {
         where: {
           id: req.params.id
         }
       }).then(function (dbPost) {
         console.log('dbPost: ' + dbPost)
         res.json(dbPost);
+      }).catch(function (error) {
+        console.log(error)
       });
   });
 

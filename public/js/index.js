@@ -7,7 +7,7 @@ $(document).ready(function() {
   
   $(document).on("click", "button.upBtn", handlePostUpvote);
 
-  $(document).on("click", "button.downVote", handlePostDownVote);
+  // $(document).on("click", "button.downVote", handlePostDownVote);
  
   postCategorySelect.on("change", handleCategoryChange);
   var post;
@@ -86,12 +86,14 @@ $(document).ready(function() {
     upBtn.addClass("upBtn btn btn-default btn-outline-success");
 
 
+
     
     // Added attribute id 'voteCounter' to newVoteCount
     newVoteCount.attr('id', 'voteCounter');
     var editBtn = $("<button>");
     editBtn.text("Upvote");
     editBtn.addClass("edit btn btn-default btn-outline-success");
+
 
     var newPostTitle = $("<h2>");
     var newPostDate = $("<small>");
@@ -140,18 +142,22 @@ $(document).ready(function() {
     newPostCardBody.append(newPostBody);
     newPostCardBody.append(newPostLink);
     newPostCardBody.append(newPostAuthor);
-    
     newPostCard.append(newPostCardHeading);
     newPostCard.append(newPostCardBody);
     newPostCard.data("post", post);
     return newPostCard;
-
   }
+
 
   // This function figures out which post we want to downvote and then calls
   // downvote
   function handlePostDownVote() {
 
+// ***GAVIN PLEASE CHECK LINE 154 and line 160 for function CONFLICT
+//    VIcente: i commented out line 160, please make sure functioning
+  // This function figures out which post we want to delete and then calls
+  // deletePost
+//   function handlePostDelete() {
     var currentPost = $(this)
       .parent()
       .parent()
@@ -170,15 +176,13 @@ $(document).ready(function() {
       });
   }
 
-  // This function figures out which post we want to upvote and takes it to the
-  // Appropriate url
+  // This function finds id of the voted post, and calls the put request function
   function handlePostUpvote() {
     console.log('Upvote Button Pressed')
     var currentPost = $(this)
       .parent()
       .parent()
       .data("post");
-    // window.location.href = "/cms?post_id=" + currentPost.id;
     console.log('post id: ' + currentPost.id)
     upVotePost(currentPost.id)
   }
@@ -190,8 +194,8 @@ $(document).ready(function() {
       url: "/api/posts/" + id
     })
       .then(function() {
-        getPosts(postCategorySelect.val());
-      });
+        getPosts(postCategorySelect.val())
+      })
   }
 
   // This function displays a message when there are no posts
