@@ -65,12 +65,12 @@ module.exports = function(app) {
 
   // DELETE route for deleting posts
 // create var 'decOne' to decrement voteCount
-  //  TO Be changed to  DOWN VOTE
+  //  TO Be changed to  UP VOTE
 
   app.put("/api/posts/:id", function (req, res) {
     console.log('backend ' + req.params.id)
     db.resources.update({
-      voteCount: sequelize.literal('voteCount - 1')
+      voteCount: sequelize.literal('voteCount + 1')
     }, {
         where: {
           id: req.params.id
@@ -83,7 +83,9 @@ module.exports = function(app) {
 
   // PUT route for updating UP VOTE
   app.put("/api/posts/:id", function (req, res) {
-    db.resources.update({ voteCount: sequelize.literal('voteCount + 1') }, {
+    db.resources.update({ 
+      voteCount: sequelize.literal('voteCount - 1') 
+    }, {
         where: {
           id: req.params.id
         }
