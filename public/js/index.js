@@ -49,10 +49,12 @@ $(document).ready(function() {
   function initializeRows() {
     blogContainer.empty();
     var postsToAdd = [];
+    var reversePoststoAdd
     for (var i = 0; i < post.length; i++) {
       postsToAdd.push(createNewRow(post[i]));
     }
-    blogContainer.append(postsToAdd);
+    reversePoststoAdd = postsToAdd.reverse()
+    blogContainer.append(reversePoststoAdd);
   }
 
   // This function constructs a post's HTML
@@ -66,7 +68,7 @@ $(document).ready(function() {
     downVoteBtn.addClass("downVote btn btn-danger");
     $('#downVoteBtn').on('click', function () {
       Post.voteCount--
-    });
+    })
     downVoteBtn.attr("id", "down");
     
     
@@ -82,6 +84,17 @@ $(document).ready(function() {
     var upBtn = $("<button>");
     upBtn.text("Up");
     upBtn.addClass("upBtn btn btn-default btn-outline-success");
+
+
+
+    
+    // Added attribute id 'voteCounter' to newVoteCount
+    newVoteCount.attr('id', 'voteCounter');
+    var editBtn = $("<button>");
+    editBtn.text("Upvote");
+    editBtn.addClass("edit btn btn-default btn-outline-success");
+
+
     var newPostTitle = $("<h2>");
     var newPostDate = $("<small>");
     var newPostCategory = $("<h5>");
@@ -107,7 +120,7 @@ $(document).ready(function() {
     newPostTitle.text(post.title + " ");
     newPostBody.text(post.description);
     var formattedDate = new Date(post.createdAt);
-    formattedDate = moment(formattedDate).format("MMMM Do YYYY, h:mm a");
+    formattedDate = moment(formattedDate).format("MMMM Do YYYY");
     newPostDate.text(formattedDate);
     newPostDate.css({
       float: "right",
@@ -135,9 +148,16 @@ $(document).ready(function() {
     return newPostCard;
   }
 
+
+  // This function figures out which post we want to downvote and then calls
+  // downvote
+  function handlePostDownVote() {
+
+// ***GAVIN PLEASE CHECK LINE 154 and line 160 for function CONFLICT
+//    VIcente: i commented out line 160, please make sure functioning
   // This function figures out which post we want to delete and then calls
   // deletePost
-  function handlePostDelete() {
+//   function handlePostDelete() {
     var currentPost = $(this)
       .parent()
       .parent()
@@ -192,22 +212,13 @@ $(document).ready(function() {
     var newPostCategory = $(this).val();
     getPosts(newPostCategory);
   }
-
-  // <<<IDEAL>>> code for what data transfer from front end to server looks like  
-  $(".downVoteBtn").on("click", function () {
-    // needs id, "$(this) refers to button"
-    var id = $(this).attr("id");
-    var counter = 1;
-    $.ajax("/api/posts/" + id, {
-      type: "PUT",
-      data: counter
-    }).done(function () {
-      console.log("data has been sent");
-    }
-    );
-  })
   
 });
+
+
+
+
+
 
 
 
