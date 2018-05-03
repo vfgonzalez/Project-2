@@ -1,3 +1,4 @@
+
 -- Database Creator HERE::::
 
 
@@ -17,6 +18,7 @@ CREATE TABLE resources
 	updatedAt TIMESTAMP NOT NULL,
 	PRIMARY KEY(id)
 );
+
 
 
 
