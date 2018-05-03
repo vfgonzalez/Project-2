@@ -3,8 +3,12 @@ $(document).ready(function() {
   var blogContainer = $(".blog-container");
   var postCategorySelect = $("#category");
   // Click events for the edit and delete buttons
-  $(document).on("click", "button.delete", handlePostDelete);
-  $(document).on("click", "button.edit", handlePostEdit);
+
+  
+  $(document).on("click", "button.upBtn", handlePostUpvote);
+
+  $(document).on("click", "button.downVote", handlePostDownVote);
+ 
   postCategorySelect.on("change", handleCategoryChange);
   var post;
 
@@ -26,19 +30,20 @@ $(document).ready(function() {
     });
   }
 
-  // This function does an API call to delete posts
-  // function deletePost(id) {
-  //   $.ajax({
-  //     method: "DELETE",
-  //     url: "/api/posts/" + id
-  //   })
-  //     .then(function() {
-  //       getPosts(postCategorySelect.val());
-  //     });
-  // }
+  // This function does an API call to downVote posts
+  function downVotePost(id) {
+    $.ajax({
+      method: "PUT",
+      url: "/api/posts/" + id
+    })
+      .then(function() {
+        getPosts(postCategorySelect.val());
+      });
+  }
 
   // Getting the initial list of posts
   getPosts();
+
   // InitializeRows handles appending all of our constructed post HTML inside
   // blogContainer
   function initializeRows() {
@@ -47,8 +52,7 @@ $(document).ready(function() {
     for (var i = 0; i < post.length; i++) {
       postsToAdd.push(createNewRow(post[i]));
     }
-    var reversePost = postsToAdd.reverse()
-    blogContainer.append(reversePost);
+    blogContainer.append(postsToAdd);
   }
 
   // This function constructs a post's HTML
@@ -57,18 +61,36 @@ $(document).ready(function() {
     newPostCard.addClass("card");
     var newPostCardHeading = $("<div>");
     newPostCardHeading.addClass("card-header");
-    var deleteBtn = $("<button>");
-    deleteBtn.text("Down");
-    deleteBtn.addClass("delete btn btn-danger");
+    var downVoteBtn = $("<button>");
+    downVoteBtn.text("Down");
+    downVoteBtn.addClass("downVote btn btn-danger");
+    $('#downVoteBtn').on('click', function () {
+      Post.voteCount--
+    });
+    downVoteBtn.attr("id", "down");
+    
+    
     var newVoteCount = $("<span>")
     newVoteCount.text(post.voteCount)
     newVoteCount.css({
       float: "right",
       "clear": "both"
+
     })
+
+    // Upvote Button Creation
+    var upBtn = $("<button>");
+    upBtn.text("Up");
+    upBtn.addClass("upBtn btn btn-default btn-outline-success");
+
+
+    });
+    // Added attribute id 'voteCounter' to newVoteCount
+    newVoteCount.attr('id', 'voteCounter');
     var editBtn = $("<button>");
     editBtn.text("Upvote");
     editBtn.addClass("edit btn btn-default btn-outline-success");
+
     var newPostTitle = $("<h2>");
     var newPostDate = $("<small>");
     var newPostCategory = $("<h5>");
@@ -102,40 +124,74 @@ $(document).ready(function() {
       "margin-top":
       "20px"
     });
+
     newPostTitle.append(newPostDate);
-    newPostCardHeading.append(deleteBtn);
-    newPostCardHeading.append(editBtn);
+
+  
+    newPostCardHeading.append(upBtn);
+
+    newPostCardHeading.append(downVoteBtn);
+
     newPostCardHeading.append(newVoteCount)
     newPostCardHeading.append(newPostTitle);
     newPostCardHeading.append(newPostCategory);
     newPostCardBody.append(newPostBody);
     newPostCardBody.append(newPostLink);
     newPostCardBody.append(newPostAuthor);
-
+    
     newPostCard.append(newPostCardHeading);
     newPostCard.append(newPostCardBody);
     newPostCard.data("post", post);
     return newPostCard;
-  }
 
-  // This function figures out which post we want to delete and then calls
-  // deletePost
-  function handlePostDelete() {
+  }
+console.log(editBtn);
+
+
+  // This function figures out which post we want to downvote and then calls
+  // downvote
+  function handlePostDownVote() {
+
     var currentPost = $(this)
       .parent()
       .parent()
       .data("post");
-    deletePost(currentPost.id);
+    downVotePost(currentPost.id);
   }
 
-  // This function figures out which post we want to edit and takes it to the
+  // This function does an API call to delete posts
+  function deletePost(id) {
+    $.ajax({
+      method: "DELETE",
+      url: "/api/posts/" + id
+    })
+      .then(function() {
+        getPosts(postCategorySelect.val());
+      });
+  }
+
+  // This function figures out which post we want to upvote and takes it to the
   // Appropriate url
-  function handlePostEdit() {
+  function handlePostUpvote() {
+    console.log('Upvote Button Pressed')
     var currentPost = $(this)
       .parent()
       .parent()
       .data("post");
-    window.location.href = "/cms?post_id=" + currentPost.id;
+    // window.location.href = "/cms?post_id=" + currentPost.id;
+    console.log('post id: ' + currentPost.id)
+    upVotePost(currentPost.id)
+  }
+
+    // This function does an API call to upvote post
+  function upVotePost(id) {
+    $.ajax({
+      method: "PUT",
+      url: "/api/posts/" + id
+    })
+      .then(function() {
+        getPosts(postCategorySelect.val());
+      });
   }
 
   // This function displays a message when there are no posts
@@ -153,4 +209,21 @@ $(document).ready(function() {
     getPosts(newPostCategory);
   }
 
+  // <<<IDEAL>>> code for what data transfer from front end to server looks like  
+  $(".downVoteBtn").on("click", function () {
+    // needs id, "$(this) refers to button"
+    var id = $(this).attr("id");
+    var counter = 1;
+    $.ajax("/api/posts/" + id, {
+      type: "PUT",
+      data: counter
+    }).done(function () {
+      console.log("data has been sent");
+    }
+    );
+  })
+  
 });
+
+
+

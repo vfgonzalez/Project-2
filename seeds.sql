@@ -1,5 +1,7 @@
 USE project2_db;
-INSERT INTO resources (link, tile, decription, category)
+
+INSERT INTO resources (link, title, description, category)
+
 VALUES
 ("https://developers.google.com/web/tools/chrome-devtools/?hl=en", "Chrome Developer Tools", " ", "General Tools"),
 ("https://medium.freecodecamp.org/", "Free Code Camp", " ", "Teaching Resource"),
@@ -56,3 +58,4 @@ VALUES
 ("https://httpstatuses.com/", "HTTP Status Codes", " ", "Testing"),
 ("https://clipboardjs.com/", "Clipboard.js NPM Package", " ", "NPM Packages"),
 ("https://medium.freecodecamp.org/what-exactly-is-node-js-ae36e97449f5", "What Exactly Is Node.js", " ", "Teaching Resource")
+
