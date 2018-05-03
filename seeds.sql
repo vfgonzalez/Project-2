@@ -1,5 +1,5 @@
 USE project2_db;
-INSERT INTO resources (link, tile, decription, category)
+INSERT INTO resources (link, title, description, category)
 VALUES
 ("https://developers.google.com/web/tools/chrome-devtools/?hl=en", "Chrome Developer Tools", " ", "General Tools"),
 ("https://medium.freecodecamp.org/", "Free Code Camp", " ", "Teaching Resource"),
