@@ -5,6 +5,7 @@
 CREATE DATABASE project2_db;
 USE project2_db;
 
+
 CREATE TABLE resources
 (
 	id INT AUTO_INCREMENT NOT NULL,
@@ -18,6 +19,7 @@ CREATE TABLE resources
 	updatedAt TIMESTAMP NOT NULL,
 	PRIMARY KEY(id)
 );
+
 
 
 

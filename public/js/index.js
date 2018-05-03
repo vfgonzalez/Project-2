@@ -110,6 +110,7 @@ $(document).ready(function() {
       "margin-top":
       "20px"
     });
+
     newPostTitle.append(newPostDate);
     newPostCardHeading.append(downVoteBtn);
     newPostCardHeading.append(editBtn);
@@ -119,11 +120,12 @@ $(document).ready(function() {
     newPostCardBody.append(newPostBody);
     newPostCardBody.append(newPostLink);
     newPostCardBody.append(newPostAuthor);
-
+    
     newPostCard.append(newPostCardHeading);
     newPostCard.append(newPostCardBody);
     newPostCard.data("post", post);
     return newPostCard;
+
   }
 console.log(editBtn);
 
@@ -177,3 +179,6 @@ console.log(editBtn);
   })
   
 });
+
+
+

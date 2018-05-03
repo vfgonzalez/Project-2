@@ -1,3 +1,11 @@
+/* Lopes additions */
+.jumbotron{
+  background-color: #fff;
+}
+
+
+/* Lopes additions */
+
 button.submit {
   float: right;
 }
@@ -14,4 +22,9 @@ form#post {
 button.edit {
   float: right;
   margin: 5px;
+  /* background-color:rgba(230, 224, 224, 0.89) */
+}
+
+.card {
+  margin-bottom: 25px;
 }
