@@ -7,7 +7,7 @@ $(document).ready(function() {
   
   $(document).on("click", "button.upBtn", handlePostUpvote);
 
-  $(document).on("click", "button.downVote", handlePostDownVote);
+  // $(document).on("click", "button.downVote", handlePostDownVote);
  
   postCategorySelect.on("change", handleCategoryChange);
   var post;
