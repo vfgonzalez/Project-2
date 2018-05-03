@@ -59,7 +59,7 @@ $(document).ready(function() {
     var downVoteBtn = $("<button>");
     downVoteBtn.text("Down");
     downVoteBtn.addClass("downVote btn btn-danger");
-    $('downVoteBtn').on('click', function () {
+    $('#downVoteBtn').on('click', function () {
       Post.voteCount--
     });
     downVoteBtn.attr("id", "down");

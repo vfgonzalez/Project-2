@@ -66,7 +66,7 @@ module.exports = function(app) {
   app.put("/api/posts/:id", function (req, res) {
     console.log('backend ' + req.params.id)
     db.resources.update({
-      voteCount: 3
+      voteCount: 2
     }, {
         where: {
           id: req.params.id
