@@ -158,7 +158,7 @@ $(document).ready(function() {
 
   // This function finds id of the voted post, and calls the put request function
   function handlePostUpvote() {
-    console.log('Upvote Button Pressed')
+    console.log($(this).parent().parent())
     var currentPost = $(this)
       .parent()
       .parent()
@@ -171,7 +171,7 @@ $(document).ready(function() {
   function upVotePost(id) {
     $.ajax({
       method: "PUT",
-      url: "/api/posts/" + id
+      url: "/api/posts/up/" + id
     })
       .then(function() {
         getPosts(postCategorySelect.val())
