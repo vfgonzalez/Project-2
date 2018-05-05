@@ -35,4 +35,6 @@ module.exports = function(sequelize, DataTypes) {
     }
   });
   return resources;
+  console.log("models page: post.js" + resources);
+  
 };

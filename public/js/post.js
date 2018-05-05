@@ -86,12 +86,12 @@ $(document).ready(function() {
   // Update a given post, bring user to the blog page when done
   function updatePost(post) {
     $.ajax({
-      method: "PUT",
+      method: "POST",
       url: "/api/posts",
       data: post
     })
       .then(function() {
-        window.location.href = "/blog";
+        window.location.href = "/index";
       });
   }
 });
