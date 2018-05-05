@@ -10,7 +10,7 @@ var bodyParser = require("body-parser");
 // Sets up the Express App
 // =============================================================
 var app = express();
-var PORT = process.env.PORT || 8080;
+var PORT = process.env.PORT || 1337;
 
 // Requiring our models for syncing
 var db = require("./models");
@@ -29,6 +29,7 @@ app.use(express.static("public"));
 // =============================================================
 require("./routes/api-routes.js")(app);
 require("./routes/html-routes.js")(app);
+require("./routes/twilio.js")(app);
 
 // Syncing our sequelize models and then starting our Express app
 // =============================================================
