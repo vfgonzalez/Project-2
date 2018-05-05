@@ -25,7 +25,7 @@ form#post {
   resize: none;
 }
 
-.card-header button.delete,
+.card-header button.downVote,
 button.edit {
   float: right;
   margin: 5px;

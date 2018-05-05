@@ -1,7 +1,10 @@
+
 -- Database Creator HERE::::
+
 
 CREATE DATABASE project2_db;
 USE project2_db;
+
 
 CREATE TABLE resources
 (
@@ -12,7 +15,13 @@ CREATE TABLE resources
     category VARCHAR(255) NOT NULL,
 	createdAt TIMESTAMP NOT NULL,
     author VARCHAR(255) NOT NULL,
-    voteCount INTEGER(11) NOT NULL,
+    voteCount INTEGER(11) DEFAULT 0 NOT NULL,
 	updatedAt TIMESTAMP NOT NULL,
 	PRIMARY KEY(id)
 );
+
+
+
+
+
+
