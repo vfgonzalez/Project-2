@@ -7,7 +7,7 @@ $(document).ready(function() {
   
   $(document).on("click", "button.upBtn", handlePostUpvote);
 
-  // $(document).on("click", "button.downVote", handlePostDownVote);
+  $(document).on("click", "button.downVote", handlePostDownVote);
  
   postCategorySelect.on("change", handleCategoryChange);
   var post;
@@ -34,10 +34,12 @@ $(document).ready(function() {
   function downVotePost(id) {
     $.ajax({
       method: "PUT",
-      url: "/api/posts/" + id
+      url: "/api/posts/down/" + id
     })
       .then(function() {
         getPosts(postCategorySelect.val());
+        console.log(postCategorySelect.val());
+        
       });
   }
 
@@ -67,17 +69,17 @@ $(document).ready(function() {
     downVoteBtn.text("Down");
     downVoteBtn.addClass("downVote btn btn-danger");
     $('#downVoteBtn').on('click', function () {
-      Post.voteCount--
+      console.log("This click works ok");
+      
+      Post.newVoteCount--
     })
     downVoteBtn.attr("id", "down");
-    
     
     var newVoteCount = $("<span>")
     newVoteCount.text(post.voteCount)
     newVoteCount.css({
       float: "right",
       "clear": "both"
-
     })
 
     // Upvote Button Creation
@@ -152,12 +154,6 @@ $(document).ready(function() {
   // This function figures out which post we want to downvote and then calls
   // downvote
   function handlePostDownVote() {
-
-// ***GAVIN PLEASE CHECK LINE 154 and line 160 for function CONFLICT
-//    VIcente: i commented out line 160, please make sure functioning
-  // This function figures out which post we want to delete and then calls
-  // deletePost
-//   function handlePostDelete() {
     var currentPost = $(this)
       .parent()
       .parent()
@@ -187,11 +183,11 @@ $(document).ready(function() {
     upVotePost(currentPost.id)
   }
 
-    // This function does an API call to upvote post
+  // This function does an API call to upvote post
   function upVotePost(id) {
     $.ajax({
       method: "PUT",
-      url: "/api/posts/" + id
+      url: "/api/posts/up/" + id
     })
       .then(function() {
         getPosts(postCategorySelect.val())
@@ -212,7 +208,6 @@ $(document).ready(function() {
     var newPostCategory = $(this).val();
     getPosts(newPostCategory);
   }
-  
 });
 
 
