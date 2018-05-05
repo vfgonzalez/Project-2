@@ -1,5 +1,31 @@
 $(document).ready(function () {
 
+  // Jeremy code:::
+
+
+  // 
+
+
+
+
+  // Thomas work area
+
+
+
+
+  // 
+
+
+  // christian work area
+
+  // 
+
+
+
+  /*when making changes, COMMENT EACH SECTION CHANG
+
+  */
+
 
   var categoryArr = [
 
@@ -227,6 +253,7 @@ $(document).ready(function () {
     newPostTitle.text(post.title + " ");
     newPostBody.text(post.description);
     var formattedDate = new Date(post.createdAt);
+    // Changes in time/date
     formattedDate = moment(formattedDate).format("MMMM Do YYYY");
     newPostDate.text(formattedDate);
     newPostDate.css({
