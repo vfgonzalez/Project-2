@@ -7,7 +7,7 @@ $(document).ready(function() {
   
   $(document).on("click", "button.upBtn", handlePostUpvote);
 
-  // $(document).on("click", "button.downVote", handlePostDownVote);
+  $(document).on("click", "button.downVote", handlePostDownVote);
  
   postCategorySelect.on("change", handleCategoryChange);
   var post;
@@ -38,6 +38,8 @@ $(document).ready(function() {
     })
       .then(function() {
         getPosts(postCategorySelect.val());
+        console.log(postCategorySelect.val());
+        
       });
   }
 
@@ -67,17 +69,17 @@ $(document).ready(function() {
     downVoteBtn.text("Down");
     downVoteBtn.addClass("downVote btn btn-danger");
     $('#downVoteBtn').on('click', function () {
-      Post.voteCount--
+      console.log("This click works ok");
+      
+      Post.newVoteCount--
     })
     downVoteBtn.attr("id", "down");
-    
     
     var newVoteCount = $("<span>")
     newVoteCount.text(post.voteCount)
     newVoteCount.css({
       float: "right",
       "clear": "both"
-
     })
 
     // Upvote Button Creation
@@ -157,7 +159,7 @@ $(document).ready(function() {
 //    VIcente: i commented out line 160, please make sure functioning
   // This function figures out which post we want to delete and then calls
   // deletePost
-//   function handlePostDelete() {
+  // function handlePostDelete() {
     var currentPost = $(this)
       .parent()
       .parent()
