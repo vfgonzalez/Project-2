@@ -132,12 +132,8 @@ $(document).ready(function() {
     });
 
     newPostTitle.append(newPostDate);
-
-  
     newPostCardHeading.append(upBtn);
-
     newPostCardHeading.append(downVoteBtn);
-
     newPostCardHeading.append(newVoteCount)
     newPostCardHeading.append(newPostTitle);
     newPostCardHeading.append(newPostCategory);
