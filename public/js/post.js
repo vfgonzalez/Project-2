@@ -1,4 +1,4 @@
-var moment = require("moment")
+// var moment = require("moment")
 $(document).ready(function() {
   // Gets an optional query string from our url (i.e. ?post_id=23)
   var url = window.location.search;

@@ -58,7 +58,7 @@ module.exports = function (app) {
   app.post('/sms', (req, res, next) => {
     const twiml = new MessagingResponse();
     // ===initial message, auto reply
-    twiml.message('Welcome to Slack overflow! Thanks for sharing your link! Visit us at #');
+    twiml.message('Welcome to Slack overflow! Thanks for sharing your link! Visit us at www.slackerflow.herokuapp.com !');
     res.writeHead(200, { 'Content-Type': 'text/xml' });
 
     client.messages.each({
@@ -74,13 +74,14 @@ module.exports = function (app) {
           link: dataArr,
           author: "Mobile User on " + postingStamp,
           category: "Mobile Link",
-          title: "Mobile Submission"
+          title: "Mobile Submission",
+          description : "Shared link using Twilio Number"
         }
         console.log(smsPostObj);
       }
 
     )
-    
+    // res.send("Conversation ended")
     // Ends Conversation
     res.end(twiml.toString());
   
@@ -89,7 +90,24 @@ module.exports = function (app) {
   }
    
 
-);
+)
+
+
+
+function(){
+  db.resources.create({
+    title: "Mobile Submission",
+    description: "Shared link using Twilio Number",
+    category: "Mobile Link",
+    link : dataArr,
+    author : "Mobile User on " + postingStamp
+
+  })
+  .then(function(dbPost) {
+      res.json(dbPost);
+      console.log("api-routes.js line::: "+ dbPost);
+      
+    });
 
 
 

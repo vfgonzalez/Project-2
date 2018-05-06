@@ -69,7 +69,7 @@ app.get('/auth/slack', passport.authenticate('slack', {
 app.get('/auth/slack/callback',
   passport.authenticate('slack', { session: false }),
   (req, res) => {
-    res.send('<p>Greet and React was successfully installed on your team.</p>');
+    res.send('<p>Slack Overflow was successfully installed on your team.</p>');
   },
   (err, req, res, next) => {
     res.status(500).send(`<p>Greet and React failed to install</p> <pre>${err}</pre>`);
@@ -93,8 +93,11 @@ slackEvents.on('message', (message, body) => {
     }
     console.log(message.text);
     // Respond to the message back in the same channel
-    slack.chat.postMessage(message.channel, `I Received your message`)
+    slack.chat.postMessage({ channel: message.channel, text: `:tada: Hooray! Thanks <@${message.user}>, your post has been added to www.slackerflow.herokuapp.com !  ` })
       .catch(console.error);
+    // // Respond to the message back in the same channel
+    // slack.chat.postMessage(message.channel, text:`I Received your message`)
+    //   .catch(console.error);
   }
   // console.log(message);
   
@@ -102,17 +105,17 @@ slackEvents.on('message', (message, body) => {
 });
 
 // *** Responding to reactions with the same emoji ***
-slackEvents.on('reaction_added', (event, body) => {
-  // Initialize a client
-  const slack = getClientByTeamId(body.team_id);
-  // Handle initialization failure
-  if (!slack) {
-    return console.error('No authorization found for this team. Did you install this app again after restarting?');
-  }
-  // Respond to the reaction back with the same emoji
-  slack.chat.postMessage(event.item.channel, `:${event.reaction}:`)
-    .catch(console.error);
-});
+// slackEvents.on('reaction_added', (event, body) => {
+//   // Initialize a client
+//   const slack = getClientByTeamId(body.team_id);
+//   // Handle initialization failure
+//   if (!slack) {
+//     return console.error('No authorization found for this team. Did you install this app again after restarting?');
+//   }
+//   // Respond to the reaction back with the same emoji
+//   slack.chat.postMessage(event.item.channel, `:${event.reaction}:`)
+//     .catch(console.error);
+// });
 
 // *** Handle errors ***
 slackEvents.on('error', (error) => {
