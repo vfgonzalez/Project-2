@@ -3,15 +3,26 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Blog - Express</title>
+  <title>Slack Overflow</title>
   <!-- Latest compiled and minified CSS & JS -->
 
   <!-- <link href="https://maxcdn.bootstrapcdn.com/bootswatch/4.0.0/flatly/bootstrap.min.css" rel="stylesheet"> OLD BOOTSTRAP LINK -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
     crossorigin="anonymous">
   <link rel="stylesheet" href="css/styles.css" media="screen" title="no title">
+  <!-- <link rel="stylesheet" href="css/card.css" media="screen" title="no title"> -->
+
+  <!-- GOOGLE FONTS -->
+  <link href="https://fonts.googleapis.com/css?family=Abril+Fatface" rel="stylesheet">
+
+
+
   <script src="https://code.jquery.com/jquery.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -21,13 +32,16 @@
         <div class="row">
           <div class="col-sm-8 col-md-7 py-4">
             <h4 class="text-white">About</h4>
-            <p class="text-muted">We're five students from UCI's full stack web development bootcampt that were fed up with disorganization slack channels. We built this tool for our second group project, but we also built it to improve the student experience. Our hope is that this will serve as a cleaner repository for useful and accurate information.  </p>
+            <p class="text-muted">We're five students from UCI's full stack web development bootcampt that were fed up with disorganization slack
+              channels. We built this tool for our second group project, but we also built it to improve the student experience.
+              Our hope is that this will serve as a cleaner repository for meaningful and useful information for everyone
+              on Slack. </p>
           </div>
           <div class="col-sm-4 offset-md-1 py-4">
             <h4 class="text-white">Contact</h4>
             <ul class="list-unstyled">
               <li>
-                <a href="#" class="text-white">Follow us on GitHub</a>
+                <a href="https://github.com/vfgonzalez/Project-2" target="_blank" class="text-white">Follow us on GitHub</a>
               </li>
             </ul>
           </div>
@@ -54,7 +68,14 @@
 
   <main role="main">
 
-    <section class="jumbotron text-center">
+    <div class="jumbotron mx-auto d-block" style="width: 90%">
+      <h1 class="display-4 text-center">Slack Overflow </h1>
+      <p class="lead text-center">Welcome to Slack Overflow. An online community where developers can share resources</p>
+
+
+    </div>
+
+    <!-- <section class="jumbotron text-center">
       <div class="container">
         <h1 class="jumbotron-heading">Slack Overflow</h1>
         <p class="lead text-muted">Welcome to Slack Overflow. An online community where developers can share resources.</p>
@@ -62,41 +83,54 @@
                   <a href="#" class="btn btn-primary my-2">Main call to action</a>
                   <a href="#" class="btn btn-secondary my-2">Secondary action</a>
               </p> -->
-      </div>
-    </section>
+    </div>
 
-    <div class="album py-5 bg-light">
+    <!-- </section> -->
 
-      <div class="container">
-        <div class="row mt-4">
-          <div class="col-md-4">
-            <div class="form-group">
-              <select class="custom-select" id="category">
-                <option selected value="">All Categories</option>
+    <div class="container text-center">
 
-                <option value="General Tools">General Tools</option>
-                <option value="Teaching Resource">Teaching Resource</option>
-                <option value="CSS">CSS</option>
-                <option value="Testing">Testing</option>
-                <option value="Random">Random</option>
-                <option value="JS">JS</option>
-                <option value="Articles">Articles</option>
-                <option value="API">API</option>
-                <option value="Databases">Databases</option>
-                <option value="NPM Packages"> NPM Packages</option>
-                <option value="Templates">Templates</option>
-                <option value="Common Issues">Common Issues</option>
-                <option value="Job Resource">Job Resource</option>
-              </select>
+      <div class="container" id="cardSection">
+
+        <div class="album py-5 mx-auto d-block" style="width: 95%">
+          <div class="container">
+
+            <div class="row" id="catCard">
+
             </div>
           </div>
-          <div class="col-md-2">
-            <a class="btn btn-light" href="/post">New Post</a>
-          </div>
         </div>
+      </div>
+    </div>
+    <!-- <div class="container">
+      <div class="row mt-4">
+        <div class="col-md-4">
+          <div class="form-group">
+            <select class="custom-select" id="category">
+              <option selected value="">All Categories</option>
 
-        <!-- Google Search Bar -->
-        <!-- <div>
+              <option value="General Tools">General Tools</option>
+              <option value="Teaching Resource">Teaching</option>
+              <option value="CSS">CSS</option>
+              <option value="Testing">Testing</option>
+              <option value="Random">Random</option>
+              <option value="JS">JS</option>
+              <option value="Articles">Articles</option>
+              <option value="API">API</option>
+              <option value="Databases">Databases</option>
+              <option value="NPM Packages"> NPM Packages</option>
+              <option value="Templates">Templates</option>
+              <option value="Common Issues">Common Issues</option>
+              <option value="Job Resources">Job Resource</option>
+            </select>
+          </div>
+        </div> -->
+        <div class="col-md-2">
+          <a class="btn btn-light" href="/post">New Post</a>
+        </div>
+      <!-- </div> -->
+
+      <!-- Google Search Bar -->
+      <!-- <div>
 
           <h2>Search This Page</h2>
 
@@ -112,20 +146,14 @@
                 })();
               </script>
               <gcse:search></gcse:search>
-
-
-
         </div> -->
 
-        <br>
-        <br>
-
-        <div class="row">
-          <div class="col-md-12 blog-container">
-          </div>
+      <div class="row">
+        <div class="col-md-12 blog-container">
         </div>
       </div>
     </div>
+
 
   </main>
 
@@ -135,7 +163,9 @@
         <a href="#">Back to top</a>
       </p>
       <p>Album example is © Bootstrap, but please download and customize it for yourself!</p>
-      <p>New to Bootstrap? <a href="../../">Visit the homepage</a> or read our <a href="../../getting-started/">getting started guide</a>.</p>
+      <p>New to Bootstrap?
+        <a href="../../">Visit the homepage</a> or read our
+        <a href="../../getting-started/">getting started guide</a>.</p>
     </div>
   </footer>
 

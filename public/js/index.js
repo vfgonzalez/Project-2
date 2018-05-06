@@ -1,7 +1,133 @@
-$(document).ready(function() {
+$(document).ready(function () {
+
+  // Jeremy code:::
+
+
+  // 
+
+
+
+
+  // Thomas work area
+
+
+
+
+  // 
+
+
+  // christian work area
+
+  // 
+
+
+
+  /*when making changes, COMMENT EACH SECTION CHANG
+
+  */
+
+
+  var categoryArr = [
+
+    {
+      category: "General Tools",
+      image: "https://upload.wikimedia.org/wikipedia/commons/9/99/Unofficial_JavaScript_logo_2.svg",
+      description: "Enter text here",
+    },
+    {
+      category: "Teaching Tools",
+      image: "https://upload.wikimedia.org/wikipedia/commons/9/99/Unofficial_JavaScript_logo_2.svg",
+      description: "Enter text here",
+    },
+    {
+      category: "CSS",
+      image: "https://upload.wikimedia.org/wikipedia/commons/9/99/Unofficial_JavaScript_logo_2.svg",
+      description: "Enter text here",
+    },
+    {
+      category: "Testing",
+      image: "https://upload.wikimedia.org/wikipedia/commons/9/99/Unofficial_JavaScript_logo_2.svg",
+      description: "Enter text here",
+    },
+    {
+      category: "Random",
+      image: "https://upload.wikimedia.org/wikipedia/commons/9/99/Unofficial_JavaScript_logo_2.svg",
+      description: "Enter text here",
+    },
+    {
+      category: "JavaScript",
+      image: "https://upload.wikimedia.org/wikipedia/commons/9/99/Unofficial_JavaScript_logo_2.svg",
+      description: "Enter text here",
+    },
+    {
+      category: "Articles",
+      image: "https://upload.wikimedia.org/wikipedia/commons/9/99/Unofficial_JavaScript_logo_2.svg",
+      description: "Enter text here",
+    },
+    {
+      category: "APIs",
+      image: "https://upload.wikimedia.org/wikipedia/commons/9/99/Unofficial_JavaScript_logo_2.svg",
+      description: "Enter text here",
+    },
+    {
+      category: "Databases",
+      image: "https://upload.wikimedia.org/wikipedia/commons/9/99/Unofficial_JavaScript_logo_2.svg",
+      description: "Enter text here",
+    },
+    {
+      category: "Node",
+      image: "https://upload.wikimedia.org/wikipedia/commons/9/99/Unofficial_JavaScript_logo_2.svg",
+      description: "Enter text here",
+    },
+    {
+      category: "Templates",
+      image: "https://upload.wikimedia.org/wikipedia/commons/9/99/Unofficial_JavaScript_logo_2.svg",
+      description: "Enter text here",
+    },
+    {
+      category: "Common Issues",
+      image: "https://upload.wikimedia.org/wikipedia/commons/9/99/Unofficial_JavaScript_logo_2.svg",
+      description: "Enter text here",
+    }
+    // {
+    //   category: "Job Resources",
+    //   image: "https://upload.wikimedia.org/wikipedia/commons/9/99/Unofficial_JavaScript_logo_2.svg",
+    //   description: "Enter text here",
+    // }
+
+  ]
+
+
+  for (i = 0; i < categoryArr.length; i++) {
+    var category = categoryArr[i].category;
+    var image = categoryArr[i].image;
+    var description = categoryArr[i].description;
+
+    $('#catCard').append(`
+          <div class="col-md-3">
+          <div class="card mb-4 box-shadow">
+            <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail" alt="Thumbnail [100%x225]"
+              style="height: 75px; width: 100%; display: block;" src="${image}" data-holder-rendered="true">
+            <div class="card-body">
+              <h4 class = "text-center">${category}</h4>
+              <p class="card-text"></p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-sm btn-outline-secondary category center-block" value="${category}">View</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>`)
+
+  }
+
+
   // blogContainer holds all of our posts
   var blogContainer = $(".blog-container");
   var postCategorySelect = $("#category");
+  var postCategorySel = $(".category");
+  console.log(postCategorySelect)
   // Click events for the edit and delete buttons
 
 
@@ -10,15 +136,20 @@ $(document).ready(function() {
   $(document).on("click", "button.downVote", handlePostDownVote);
  
   postCategorySelect.on("change", handleCategoryChange);
+  postCategorySel.on("click", handleCategoryChange2);
+
   var post;
 
   // This function grabs posts from the database and updates the view
   function getPosts(category) {
+    // console.log("the getpost category is " + category)
     var categoryString = category || "";
+    console.log("the getpost category is " + category)
     if (categoryString) {
       categoryString = "/category/" + categoryString;
     }
-    $.get("/api/posts" + categoryString, function(data) {
+    console.log("category string = " + categoryString)
+    $.get("/api/posts" + categoryString, function (data) {
       console.log("Posts Rendering:::", data);
       post = data;
       if (!post || !post.length) {
@@ -100,50 +231,48 @@ $(document).ready(function() {
     var newPostTitle = $("<h2>");
     var newPostDate = $("<small>");
     var newPostCategory = $("<h5>");
-    var newPostLink = $("<a href="+post.link+" target='_blank'>")
+    var newPostLink = $("<a href=" + post.link + " target='_blank'>")
     newPostLink.text(post.link)
     newPostCategory.text(post.category);
     newPostCategory.css({
       float: "left",
       "font-weight": "700",
       "margin-top":
-      "-5px",
+        "-5px",
       "color": "blue"
     });
     var newPostCardBody = $("<div>");
     newPostCardBody.addClass("card-body");
     var newPostBody = $("<p>");
     var newPostAuthor = $("<span>")
-    newPostAuthor.text("   - posted by: "+post.author)
+    newPostAuthor.text("   - posted by: " + post.author)
     newPostAuthor.css({
-      "font-style" : "italic",
+      "font-style": "italic",
       "font-weight": "strong"
     })
     newPostTitle.text(post.title + " ");
     newPostBody.text(post.description);
-    var formattedDate = new Date(post.createdAt);
-    formattedDate = moment(formattedDate).format("MMMM Do YYYY");
+    // var formattedDate = new Date(post.createdAt);
+    // Changes in time/date
+    formattedDate = moment(post.createdAt).format("MMMM Do YYYY");
     newPostDate.text(formattedDate);
     newPostDate.css({
       float: "right",
       "font-weight": "100",
       "margin-top":
-      "20px"
+        "20px"
     });
 
     newPostTitle.append(newPostDate);
-
-  
     newPostCardHeading.append(upBtn);
-
     newPostCardHeading.append(downVoteBtn);
-
     newPostCardHeading.append(newVoteCount)
     newPostCardHeading.append(newPostTitle);
     newPostCardHeading.append(newPostCategory);
     newPostCardBody.append(newPostBody);
     newPostCardBody.append(newPostLink);
     newPostCardBody.append(newPostAuthor);
+
     newPostCard.append(newPostCardHeading);
     newPostCard.append(newPostCardBody);
     newPostCard.data("post", post);
@@ -162,15 +291,15 @@ $(document).ready(function() {
   }
 
   // This function does an API call to delete posts
-  function deletePost(id) {
-    $.ajax({
-      method: "DELETE",
-      url: "/api/posts/" + id
-    })
-      .then(function() {
-        getPosts(postCategorySelect.val());
-      });
-  }
+  // function deletePost(id) {
+  //   $.ajax({
+  //     method: "DELETE",
+  //     url: "/api/posts/" + id
+  //   })
+  //     .then(function() {
+  //       getPosts(postCategorySelect.val());
+  //     });
+  // }
 
   // This function finds id of the voted post, and calls the put request function
   function handlePostUpvote() {
@@ -204,8 +333,41 @@ $(document).ready(function() {
   }
 
   // This function handles reloading new posts when the category changes
+
+
   function handleCategoryChange() {
     var newPostCategory = $(this).val();
     getPosts(newPostCategory);
+    console.log(newPostCategory)
   }
 });
+
+
+
+  function handleCategoryChange2() {
+    var newPostCategory = $(this).val();
+    getPosts(newPostCategory);
+    console.log(newPostCategory)
+  
+  }
+
+
+  // Scroll to function. When card button is clicked, go to div associated with the .blog-container class. 
+  $(".category").click(function () {
+    $('html,body').animate({
+      scrollTop: $(".blog-container").offset().top
+    },
+      'slow');
+  });
+
+  
+
+// });
+
+
+
+
+
+
+
+
