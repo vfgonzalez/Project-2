@@ -252,9 +252,9 @@ $(document).ready(function () {
     })
     newPostTitle.text(post.title + " ");
     newPostBody.text(post.description);
-    var formattedDate = new Date(post.createdAt);
+    // var formattedDate = new Date(post.createdAt);
     // Changes in time/date
-    formattedDate = moment(formattedDate).format("MMMM Do YYYY");
+    formattedDate = moment(post.createdAt).format("MMMM Do YYYY");
     newPostDate.text(formattedDate);
     newPostDate.css({
       float: "right",
@@ -291,15 +291,15 @@ $(document).ready(function () {
   }
 
   // This function does an API call to delete posts
-  function deletePost(id) {
-    $.ajax({
-      method: "DELETE",
-      url: "/api/posts/" + id
-    })
-      .then(function() {
-        getPosts(postCategorySelect.val());
-      });
-  }
+  // function deletePost(id) {
+  //   $.ajax({
+  //     method: "DELETE",
+  //     url: "/api/posts/" + id
+  //   })
+  //     .then(function() {
+  //       getPosts(postCategorySelect.val());
+  //     });
+  // }
 
   // This function finds id of the voted post, and calls the put request function
   function handlePostUpvote() {
@@ -359,21 +359,6 @@ $(document).ready(function () {
       'slow');
   });
 
-
-
-  // <<<IDEAL>>> code for what data transfer from front end to server looks like  
-//   $(".downVoteBtn").on("click", function () {
-//     // needs id, "$(this) refers to button"
-//     var id = $(this).attr("id");
-//     var counter = 1;
-//     $.ajax("/api/posts/" + id, {
-//       type: "PUT",
-//       data: counter
-//     }).done(function () {
-//       console.log("data has been sent");
-//     }
-//     );
-//   })
   
 
 });

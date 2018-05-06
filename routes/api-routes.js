@@ -59,7 +59,7 @@ module.exports = function(app) {
       author : req.body.author
 
     })
-      .then(function(dbPost) {
+    .then(function(dbPost) {
         res.json(dbPost);
         console.log("api-routes.js line::: "+ dbPost);
         

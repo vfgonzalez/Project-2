@@ -33,7 +33,7 @@ var timestamp = moment().format("ddd, DD MMM YYYY HH:mm ZZ")
 var postingStamp = moment().format("ddd, MMM Do YYYY hh:mm")
 
 
-var dataArr = []
+var dataArr
 var smsPostObj = {}
 
 async function smsPost() {
@@ -55,10 +55,10 @@ async function smsPost() {
   });
 }
 module.exports = function (app) {
-  app.post('/sms', (req, res) => {
+  app.post('/sms', (req, res, next) => {
     const twiml = new MessagingResponse();
     // ===initial message, auto reply
-    twiml.message('Welcome to Slack overflow! Thanks for sharing your link! Visit us at www.google.com');
+    twiml.message('Welcome to Slack overflow! Thanks for sharing your link! Visit us at #');
     res.writeHead(200, { 'Content-Type': 'text/xml' });
 
     client.messages.each({
@@ -77,52 +77,26 @@ module.exports = function (app) {
           title: "Mobile Submission"
         }
         console.log(smsPostObj);
-     
-        
-
-
-
-
-
-
       }
 
-    ).wait(function smsPost() {
-      app.post("/api/posts", function(req, res) {
-        console.log(req.body);
-        db.resources.create({
-          title: "Mobile input",
-          description: "This is a Mobile contribution",
-          category: "Mobile Link",
-          link : dataArr,
-          author : "Mobile User on " + postingStamp
+    )
     
-        })
-          .wait(function(dbPost) {
-            res.json(dbPost);
-            console.log("post route on TWILIO")
-          
-          });
-      });
-    })
-
     // Ends Conversation
     res.end(twiml.toString());
+  
+    
+    
+  }
+   
 
-    // function smsPost(smsPostObj) {
-    //   $.ajax({
-    //     method: "POST",
-    //     url: "/api/posts",
-    //     data: smsPostObj
-    //   })
-    //     .then(function () {
-    //       console.log("SMSPOST route run");
+);
 
-    //     });
-    // }
 
-  });
+
 }
+  
+
+  
 // http.createServer(app).listen(1337, () => {
 //   console.log('Express server listening on port 1337');
 // });
