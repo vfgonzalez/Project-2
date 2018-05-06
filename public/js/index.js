@@ -4,7 +4,7 @@ $(document).ready(function() {
   var postCategorySelect = $("#category");
   // Click events for the edit and delete buttons
 
-  
+
   $(document).on("click", "button.upBtn", handlePostUpvote);
 
   $(document).on("click", "button.downVote", handlePostDownVote);
@@ -209,11 +209,3 @@ $(document).ready(function() {
     getPosts(newPostCategory);
   }
 });
-
-
-
-
-
-
-
-
