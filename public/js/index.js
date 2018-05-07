@@ -1,4 +1,3 @@
-// var moment = require("moment")
 $(document).ready(function () {
   // Jeremy code:::
 
