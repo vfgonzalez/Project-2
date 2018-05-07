@@ -25,13 +25,13 @@ app.use(bodyParser.json());
 // Static directory
 app.use(express.static("public"));
 
-var twilioroutes = require('./routes/twilio-routes.js')
+// var twilioroutes = require('./routes/twilio-routes.js')
 
 // ...
 
-app.use('/', twilioroutes)
-app.use('/sms', twilioroutes)
-app.use('/sms/post', twilioroutes)
+// app.use('/', twilioroutes)
+// app.use('/sms', twilioroutes)
+// app.use('/sms/post', twilioroutes)
 
 // Routes
 // =============================================================
