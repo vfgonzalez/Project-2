@@ -77,10 +77,14 @@ module.exports = function(app) {
           id: req.params.id
         }
       }).then(function (dbPost) {
+        // location.reload();
         res.json(dbPost);
       });
   });
 
+
+
+  
   
   // PUT route for updating UP VOTE
   app.put("/api/posts/up/:id", function (req, res) {
@@ -93,7 +97,8 @@ module.exports = function(app) {
       }).then(function (dbPost) {
         console.log('dbPost: ' + dbPost)
         res.json(dbPost);
-      }).catch(function (error) {
+        // location.reload()
+;      }).catch(function (error) {
         console.log(error)
       });
   });
