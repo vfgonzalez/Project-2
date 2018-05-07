@@ -2,9 +2,16 @@ require('dotenv').config()
 const MessagingResponse = require('twilio').twiml.MessagingResponse;
 var db = require("../models");
 const moment = require("moment");
+var express = require("express")
+var router = express.Router()
 
 
 
+// middleware that is specific to this router
+router.use(function timeLog (req, res, next) {
+  console.log('Time: ', Date.now())
+  next()
+})
 
 const accountSid = process.env.TWILIO_ACCOUNT_SID_LIVE;
 const authToken = process.env.TWILIO_AUTH_TOKEN_LIVE;
@@ -32,8 +39,8 @@ function addAlert(){
 }
 
 
-module.exports = function (app) {
-  app.post('/sms', (req, res, next) => {
+// module.exports = function (app) {
+  router.post('/sms', (req, res, next) => {
     const twiml = new MessagingResponse();
     // ===initial message, auto reply
     twiml.message('Welcome to Slack overflow! Thanks for sharing your link! Visit us at www.slackerflow.herokuapp.com !');
@@ -64,7 +71,7 @@ module.exports = function (app) {
   } 
   )
 
-  app.post("/sms/post", function(req, res) {
+  router.post("/sms/post", function(req, res) {
     // console.log("****Redirect Object: "+ req.body.Body);
     db.resources.create({
       title: "Mobile Submission",
@@ -83,11 +90,11 @@ module.exports = function (app) {
   });
 
 
+module.exports = router
 
 
 
-
-}
+// }
 
 
 
