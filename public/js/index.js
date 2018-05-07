@@ -130,7 +130,7 @@ $(document).ready(function () {
   console.log(postCategorySelect)
   // Click events for the edit and delete buttons
 
-  
+
   $(document).on("click", "button.upBtn", handlePostUpvote);
 
   $(document).on("click", "button.downVote", handlePostDownVote);
@@ -340,6 +340,7 @@ $(document).ready(function () {
     getPosts(newPostCategory);
     console.log(newPostCategory)
   }
+});
 
 
 
@@ -361,7 +362,7 @@ $(document).ready(function () {
 
   
 
-});
+// });
 
 
 
