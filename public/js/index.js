@@ -9,7 +9,7 @@ $(document).ready(function () {
       description: "Enter text here",
     },
     {
-      category: "Teaching Tools",
+      category: "Training Material",
       image: "https://upload.wikimedia.org/wikipedia/commons/9/99/Unofficial_JavaScript_logo_2.svg",
       description: "Enter text here",
     },
@@ -20,11 +20,6 @@ $(document).ready(function () {
     },
     {
       category: "Testing",
-      image: "https://upload.wikimedia.org/wikipedia/commons/9/99/Unofficial_JavaScript_logo_2.svg",
-      description: "Enter text here",
-    },
-    {
-      category: "Random",
       image: "https://upload.wikimedia.org/wikipedia/commons/9/99/Unofficial_JavaScript_logo_2.svg",
       description: "Enter text here",
     },
@@ -62,12 +57,32 @@ $(document).ready(function () {
       category: "Common Issues",
       image: "https://upload.wikimedia.org/wikipedia/commons/9/99/Unofficial_JavaScript_logo_2.svg",
       description: "Enter text here",
+    },
+    {
+      category: "Job Resources",
+      image: "https://upload.wikimedia.org/wikipedia/commons/9/99/Unofficial_JavaScript_logo_2.svg",
+      description: "Enter text here",
+    },
+    {
+      category: "HTML",
+      image: "https://upload.wikimedia.org/wikipedia/commons/9/99/Unofficial_JavaScript_logo_2.svg",
+      description: "Enter text here",
+    },
+    {
+      category: "Other",
+      image: "https://upload.wikimedia.org/wikipedia/commons/9/99/Unofficial_JavaScript_logo_2.svg",
+      description: "Enter text here",
+    },
+    {
+      category: "Slack",
+      image: "https://upload.wikimedia.org/wikipedia/commons/9/99/Unofficial_JavaScript_logo_2.svg",
+      description: "Enter text here",
+    },
+    {
+      category: "Twilio",
+      image: "https://upload.wikimedia.org/wikipedia/commons/9/99/Unofficial_JavaScript_logo_2.svg",
+      description: "Enter text here",
     }
-    // {
-    //   category: "Job Resources",
-    //   image: "https://upload.wikimedia.org/wikipedia/commons/9/99/Unofficial_JavaScript_logo_2.svg",
-    //   description: "Enter text here",
-    // }
 
   ]
 
@@ -99,24 +114,23 @@ $(document).ready(function () {
 
   // blogContainer holds all of our posts
   var blogContainer = $(".blog-container");
-  var postCategorySelect = $("#category");
+  // var postCategorySelect = $("#category"); -- old code related to dropdown
   var postCategorySel = $(".category");
-  console.log(postCategorySelect)
+
   // Click events for the edit and delete buttons
-
-  
   $(document).on("click", "button.upBtn", handlePostUpvote);
-
   $(document).on("click", "button.downVote", handlePostDownVote);
- 
-  postCategorySelect.on("change", handleCategoryChange);
+  
+
+  // postCategorySelect.on("change", handleCategoryChange); -- old code related to dropdown
   postCategorySel.on("click", handleCategoryChange2);
+
+ 
 
   var post;
 
   // This function grabs posts from the database and updates the view
   function getPosts(category) {
-    // console.log("the getpost category is " + category)
     var categoryString = category || "";
     console.log("the getpost category is " + category)
     if (categoryString) {
@@ -141,18 +155,17 @@ $(document).ready(function () {
       method: "PUT",
       url: "/api/posts/down/" + id
     })
-      .then(function() {
-        getPosts(postCategorySelect.val());
-        console.log(postCategorySelect.val());
-        
+      .then(function () {
+        getPosts(postCategorySel.val());
+        console.log(postCategorySel.val());
+
       });
   }
 
   // Getting the initial list of posts
   getPosts();
 
-  // InitializeRows handles appending all of our constructed post HTML inside
-  // blogContainer
+  // InitializeRows handles appending all of our constructed post HTML inside blogContainer
   function initializeRows() {
     blogContainer.empty();
     var postsToAdd = [];
@@ -175,11 +188,11 @@ $(document).ready(function () {
     downVoteBtn.addClass("downVote btn btn-danger");
     $('#downVoteBtn').on('click', function () {
       console.log("This click works ok");
-      
+
       Post.newVoteCount--
     })
     downVoteBtn.attr("id", "down");
-    
+
     var newVoteCount = $("<span>")
     newVoteCount.text(post.voteCount)
     newVoteCount.css({
@@ -193,8 +206,6 @@ $(document).ready(function () {
     upBtn.addClass("upBtn btn btn-default btn-outline-success");
 
 
-
-    
     // Added attribute id 'voteCounter' to newVoteCount
     newVoteCount.attr('id', 'voteCounter');
     var editBtn = $("<button>");
@@ -237,19 +248,14 @@ $(document).ready(function () {
     });
 
     newPostTitle.append(newPostDate);
-
-  
     newPostCardHeading.append(upBtn);
-
     newPostCardHeading.append(downVoteBtn);
-
     newPostCardHeading.append(newVoteCount)
     newPostCardHeading.append(newPostTitle);
     newPostCardHeading.append(newPostCategory);
     newPostCardBody.append(newPostBody);
     newPostCardBody.append(newPostLink);
     newPostCardBody.append(newPostAuthor);
-
     newPostCard.append(newPostCardHeading);
     newPostCard.append(newPostCardBody);
     newPostCard.data("post", post);
@@ -257,8 +263,7 @@ $(document).ready(function () {
   }
 
 
-  // This function figures out which post we want to downvote and then calls
-  // downvote
+  // This function figures out which post we want to downvote and then calls downvote
   function handlePostDownVote() {
     var currentPost = $(this)
       .parent()
@@ -273,8 +278,8 @@ $(document).ready(function () {
       method: "DELETE",
       url: "/api/posts/" + id
     })
-      .then(function() {
-        getPosts(postCategorySelect.val());
+      .then(function () {
+        getPosts(postCategorySel.val());
       });
   }
 
@@ -295,8 +300,8 @@ $(document).ready(function () {
       method: "PUT",
       url: "/api/posts/up/" + id
     })
-      .then(function() {
-        getPosts(postCategorySelect.val())
+      .then(function () {
+        getPosts(postCategorySel.val())
       })
   }
 
@@ -311,20 +316,18 @@ $(document).ready(function () {
 
   // This function handles reloading new posts when the category changes
 
-
-  function handleCategoryChange() {
-    var newPostCategory = $(this).val();
-    getPosts(newPostCategory);
-    console.log(newPostCategory)
-  }
-
+  // Old code related to html category dropdown
+  // function handleCategoryChange() {
+  //   var newPostCategory = $(this).val();
+  //   getPosts(newPostCategory);
+  //   console.log("new post category = " + newPostCategory)
+  // }
 
 
   function handleCategoryChange2() {
     var newPostCategory = $(this).val();
     getPosts(newPostCategory);
-    console.log(newPostCategory)
-  
+    console.log("new post category = " + newPostCategory)
   }
 
 
@@ -339,19 +342,18 @@ $(document).ready(function () {
 
 
   // <<<IDEAL>>> code for what data transfer from front end to server looks like  
-//   $(".downVoteBtn").on("click", function () {
-//     // needs id, "$(this) refers to button"
-//     var id = $(this).attr("id");
-//     var counter = 1;
-//     $.ajax("/api/posts/" + id, {
-//       type: "PUT",
-//       data: counter
-//     }).done(function () {
-//       console.log("data has been sent");
-//     }
-//     );
-//   })
-  
+  //   $(".downVoteBtn").on("click", function () {
+  //     // needs id, "$(this) refers to button"
+  //     var id = $(this).attr("id");
+  //     var counter = 1;
+  //     $.ajax("/api/posts/" + id, {
+  //       type: "PUT",
+  //       data: counter
+  //     }).done(function () {
+  //       console.log("data has been sent");
+  //     }
+  //     );
+  //   })
 
 });
 
