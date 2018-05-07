@@ -8,7 +8,7 @@ const bodyParser = require("body-parser")
 const MessagingResponse = require('twilio').twiml.MessagingResponse;
 const app = express();
 const session = require('express-session');
-const $ = require("jquery")
+// const $ = require("jquery")
 require('dotenv').config()
 
 // JSDOM and jQuery:

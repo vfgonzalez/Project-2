@@ -1,4 +1,3 @@
-// var moment = require("moment")
 $(document).ready(function () {
   // Jeremy code:::
 
@@ -148,12 +147,11 @@ $(document).ready(function () {
 
   $(document).on("click", "button.upBtn", handlePostUpvote);
   $(document).on("click", "button.downVote", handlePostDownVote);
-  
+
 
   // postCategorySelect.on("change", handleCategoryChange); -- old code related to dropdown
   postCategorySel.on("click", handleCategoryChange2);
 
- 
 
   var post;
 
@@ -350,15 +348,9 @@ $(document).ready(function () {
     },
       'slow');
   });
-    // temporary sms alert function, not working yet
-    // $(".sms-alert").click(function(){
-    //   $(".alert").alert('close')
-    // })  
+  // temporary sms alert function, not working yet
+  // $(".sms-alert").click(function(){
+  //   $(".alert").alert('close')
+  // })  
 
-
-
-
-
-
-
-
+})
