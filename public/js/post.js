@@ -1,7 +1,9 @@
+
 $(document).ready(function() {
   // Gets an optional query string from our url (i.e. ?post_id=23)
   var url = window.location.search;
   var postId;
+  // var postingStamp = moment().format("ddd, MMM Do YYYY hh:mm")
   // Sets a flag for whether or not we're updating a post to be false initially
   var updating = false;
 
@@ -39,7 +41,7 @@ $(document).ready(function() {
       description: bodyInput.val(),
       category: postCategorySelect.val(),
       author : authorInput.val(),
-      link : linkInput.val() 
+      link : linkInput.val()
     };
     // return newPost
     console.log("Retreived Data:::: "+ newPost);

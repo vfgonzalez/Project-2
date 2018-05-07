@@ -59,7 +59,7 @@ module.exports = function(app) {
       author : req.body.author
 
     })
-      .then(function(dbPost) {
+    .then(function(dbPost) {
         res.json(dbPost);
         console.log("api-routes.js line::: "+ dbPost);
         
@@ -81,7 +81,7 @@ module.exports = function(app) {
       });
   });
 
-
+  
   // PUT route for updating UP VOTE
   app.put("/api/posts/up/:id", function (req, res) {
     db.resources.update({ 

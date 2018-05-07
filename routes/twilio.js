@@ -8,8 +8,19 @@ const bodyParser = require("body-parser")
 const MessagingResponse = require('twilio').twiml.MessagingResponse;
 const app = express();
 const session = require('express-session');
-const moment = require("moment")
+const $ = require("jquery")
 require('dotenv').config()
+
+// JSDOM and jQuery:
+// const jsdom = require("jsdom");
+// const { JSDOM } = jsdom;
+// dom = JSDOM.fromFile("../public/index.html", options).then(dom => {
+//   console.log(dom.serialize());
+// });
+
+const moment = require("moment")
+
+
 
 var jsonParser = bodyParser.json()
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
@@ -30,35 +41,30 @@ const client = require('twilio')(accountSid, authToken);
 
 
 var timestamp = moment().format("ddd, DD MMM YYYY HH:mm ZZ")
-var postingStamp = moment().format("ddd, MMM Do YYYY hh:mm")
+var postingStamp = moment().format("ddd, MMM Do YYYY")
 
 
-var dataArr = []
+var dataArr = {}
 var smsPostObj = {}
 
-async function smsPost() {
-  app.post("/api/posts", function(req, res) {
-    console.log(req.body);
-    db.resources.create({
-      title: "Mobile input",
-      description: "This is a Mobile contribution",
-      category: "Mobile Link",
-      link : dataArr,
-      author : "Mobile User on " + postingStamp
-
-    })
-      .wait(function(dbPost) {
-        res.json(dbPost);
-        console.log("post route on TWILIO")
-      
-      });
-  });
+// function below to add alert to index page when new SMS posting comes in
+function addAlert(){
+  // $(".sms-alert").append(`<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  //       <strong>NEW SMS Link</strong> Click <a href="/index">HERE</a> to refresh the page.
+  //       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+  //         <span aria-hidden="true">&times;</span>
+  //       </button>
+  //     </div>`)
+  console.log("AddAlert function Runs");
+  
 }
+
+
 module.exports = function (app) {
-  app.post('/sms', (req, res) => {
+  app.post('/sms', (req, res, next) => {
     const twiml = new MessagingResponse();
     // ===initial message, auto reply
-    twiml.message('Welcome to Slack overflow! Thanks for sharing your link! Visit us at www.google.com');
+    twiml.message('Welcome to Slack overflow! Thanks for sharing your link! Visit us at www.slackerflow.herokuapp.com !');
     res.writeHead(200, { 'Content-Type': 'text/xml' });
 
     client.messages.each({
@@ -74,55 +80,46 @@ module.exports = function (app) {
           link: dataArr,
           author: "Mobile User on " + postingStamp,
           category: "Mobile Link",
-          title: "Mobile Submission"
+          title: "Mobile Submission",
+          description: "Shared link using Twilio Number"
         }
-        console.log(smsPostObj);
-     
-        
-
-
-
-
-
-
+        // console.log("initial log: " + smsPostObj);
       }
-
-    ).wait(function smsPost() {
-      app.post("/api/posts", function(req, res) {
-        console.log(req.body);
-        db.resources.create({
-          title: "Mobile input",
-          description: "This is a Mobile contribution",
-          category: "Mobile Link",
-          link : dataArr,
-          author : "Mobile User on " + postingStamp
+    );
     
-        })
-          .wait(function(dbPost) {
-            res.json(dbPost);
-            console.log("post route on TWILIO")
-          
-          });
-      });
-    })
-
-    // Ends Conversation
+    twiml.redirect("/sms/post");
     res.end(twiml.toString());
+    // Ends Conversation
+  } 
+  )
 
-    // function smsPost(smsPostObj) {
-    //   $.ajax({
-    //     method: "POST",
-    //     url: "/api/posts",
-    //     data: smsPostObj
-    //   })
-    //     .then(function () {
-    //       console.log("SMSPOST route run");
+  app.post("/sms/post", function(req, res) {
+    // console.log("****Redirect Object: "+ req.body.Body);
+    db.resources.create({
+      title: "Mobile Submission",
+      description: "Shared link via Slack Text",
+      category: "Mobile Link",
+      link : req.body.Body,
+      author : "Mobile User on " + postingStamp
 
-    //     });
-    // }
-
+    })
+    .then(function(dbPost) {
+        res.json(dbPost);
+        addAlert()
+        console.log("New Text Submission posted to Database. Refresh Page.");
+        
+      });
   });
+
+
+
+
+
+
 }
+
+
+
 // http.createServer(app).listen(1337, () => {
 //   console.log('Express server listening on port 1337');
-// });
+// })

@@ -1,4 +1,30 @@
+// var moment = require("moment")
 $(document).ready(function () {
+  // Jeremy code:::
+
+
+  // 
+
+
+
+
+  // Thomas work area
+
+
+
+
+  // 
+
+
+  // christian work area
+
+  // 
+
+
+
+  /*when making changes, COMMENT EACH SECTION CHANG
+
+  */
 
 
   var categoryArr = [
@@ -117,7 +143,9 @@ $(document).ready(function () {
   // var postCategorySelect = $("#category"); -- old code related to dropdown
   var postCategorySel = $(".category");
 
+
   // Click events for the edit and delete buttons
+
   $(document).on("click", "button.upBtn", handlePostUpvote);
   $(document).on("click", "button.downVote", handlePostDownVote);
   
@@ -238,7 +266,8 @@ $(document).ready(function () {
     newPostTitle.text(post.title + " ");
     newPostBody.text(post.description);
     var formattedDate = new Date(post.createdAt);
-    formattedDate = moment(formattedDate).format("MMMM Do YYYY");
+    // Changes in time/date .utcOffset(-8)
+    formattedDate = moment(post.createdAt).format("ddd, MMM Do YYYY");
     newPostDate.text(formattedDate);
     newPostDate.css({
       float: "right",
@@ -272,16 +301,6 @@ $(document).ready(function () {
     downVotePost(currentPost.id);
   }
 
-  // This function does an API call to delete posts
-  function deletePost(id) {
-    $.ajax({
-      method: "DELETE",
-      url: "/api/posts/" + id
-    })
-      .then(function () {
-        getPosts(postCategorySel.val());
-      });
-  }
 
   // This function finds id of the voted post, and calls the put request function
   function handlePostUpvote() {
@@ -316,13 +335,6 @@ $(document).ready(function () {
 
   // This function handles reloading new posts when the category changes
 
-  // Old code related to html category dropdown
-  // function handleCategoryChange() {
-  //   var newPostCategory = $(this).val();
-  //   getPosts(newPostCategory);
-  //   console.log("new post category = " + newPostCategory)
-  // }
-
 
   function handleCategoryChange2() {
     var newPostCategory = $(this).val();
@@ -338,24 +350,10 @@ $(document).ready(function () {
     },
       'slow');
   });
-
-
-
-  // <<<IDEAL>>> code for what data transfer from front end to server looks like  
-  //   $(".downVoteBtn").on("click", function () {
-  //     // needs id, "$(this) refers to button"
-  //     var id = $(this).attr("id");
-  //     var counter = 1;
-  //     $.ajax("/api/posts/" + id, {
-  //       type: "PUT",
-  //       data: counter
-  //     }).done(function () {
-  //       console.log("data has been sent");
-  //     }
-  //     );
-  //   })
-
-});
+    // temporary sms alert function, not working yet
+    // $(".sms-alert").click(function(){
+    //   $(".alert").alert('close')
+    // })  
 
 
 

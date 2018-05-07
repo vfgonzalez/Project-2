@@ -33,6 +33,7 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: true
     }
+    
   });
   return resources;
   console.log("models page: post.js" + resources);
