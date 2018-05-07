@@ -1,5 +1,5 @@
+// var moment = require("moment")
 $(document).ready(function () {
-
   // Jeremy code:::
 
 
@@ -253,8 +253,8 @@ $(document).ready(function () {
     newPostTitle.text(post.title + " ");
     newPostBody.text(post.description);
     var formattedDate = new Date(post.createdAt);
-    // Changes in time/date
-    formattedDate = moment(post.createdAt).utcOffset(-8).format("ddd, MMM Do YYYY");
+    // Changes in time/date .utcOffset(-8)
+    formattedDate = moment(post.createdAt).format("ddd, MMM Do YYYY");
     newPostDate.text(formattedDate);
     newPostDate.css({
       float: "right",
@@ -359,10 +359,10 @@ $(document).ready(function () {
     },
       'slow');
   });
-
-    $(".sms-alert").click(function(){
-      $(".alert").alert('close')
-    })  
+    // temporary sms alert function, not working yet
+    // $(".sms-alert").click(function(){
+    //   $(".alert").alert('close')
+    // })  
 
 // });
 
