@@ -252,9 +252,9 @@ $(document).ready(function () {
     })
     newPostTitle.text(post.title + " ");
     newPostBody.text(post.description);
-    // var formattedDate = new Date(post.createdAt);
+    var formattedDate = new Date(post.createdAt);
     // Changes in time/date
-    formattedDate = moment(post.createdAt).format("MMMM Do YYYY");
+    formattedDate = moment(post.createdAt).utcOffset(-8).format("ddd, MMM Do YYYY");
     newPostDate.text(formattedDate);
     newPostDate.css({
       float: "right",
@@ -359,7 +359,9 @@ $(document).ready(function () {
       'slow');
   });
 
-  
+    $(".sms-alert").click(function(){
+      $(".alert").alert('close')
+    })  
 
 });
 
