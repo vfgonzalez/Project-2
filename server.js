@@ -31,7 +31,7 @@ require("./routes/api-routes.js")(app);
 require("./routes/html-routes.js")(app);
 
 // require("./routes/slack.js")(app);
-// require("./routes/twilio.js")(app);
+require("./routes/twilio-routes.js")(app);
 
 
 // Syncing our sequelize models and then starting our Express app
