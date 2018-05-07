@@ -151,7 +151,6 @@ $(document).ready(function () {
 
   // postCategorySelect.on("change", handleCategoryChange); -- old code related to dropdown
   postCategorySel.on("click", handleCategoryChange2);
-
  
 
   var post;
@@ -355,6 +354,9 @@ $(document).ready(function () {
   }
 
 
+// JEREMY WORK BELOW 
+// PUT CLOSING TAG ON LINE 361 TO RESOLVE LINTING ERROR
+
   // Scroll to function. When card button is clicked, go to div associated with the .blog-container class. 
   $(".category").click(function () {
     $('html,body').animate({
@@ -366,8 +368,9 @@ $(document).ready(function () {
     // $(".sms-alert").click(function(){
     //   $(".alert").alert('close')
     // })  
-})
+});
 
+// });
 
 
 
