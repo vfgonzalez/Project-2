@@ -1,13 +1,13 @@
-var db = require("../models");
 
-var sequelize = require('sequelize');
 
 const http = require('http');
-const express = require('express');
-const bodyParser = require("body-parser")
+// const express = require('express');
+// const bodyParser = require("body-parser")
 const MessagingResponse = require('twilio').twiml.MessagingResponse;
-const app = express();
-const session = require('express-session');
+// const app = express();
+// const session = require('express-session');
+// var sequelize = require('sequelize');
+var db = require("../models");
 // const $ = require("jquery")
 require('dotenv').config()
 
@@ -18,21 +18,21 @@ require('dotenv').config()
 //   console.log(dom.serialize());
 // });
 
-const moment = require("moment")
+const moment = require("moment");
 
 
 
-var jsonParser = bodyParser.json()
-var urlencodedParser = bodyParser.urlencoded({ extended: false })
+// var jsonParser = bodyParser.json()
+// var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 // parse various different custom JSON types as JSON
-app.use(bodyParser.json({ type: 'application/*+json' }))
+// app.use(bodyParser.json({ type: 'application/*+json' }))
 
 // parse some custom thing into a Buffer
-app.use(bodyParser.raw({ type: 'application/vnd.custom-type' }))
+// app.use(bodyParser.raw({ type: 'application/vnd.custom-type' }))
 
 // parse an HTML body into a string
-app.use(bodyParser.text({ type: 'text/html' }))
+// app.use(bodyParser.text({ type: 'text/html' }))
 
 const accountSid = process.env.TWILIO_ACCOUNT_SID_LIVE;
 const authToken = process.env.TWILIO_AUTH_TOKEN_LIVE;
