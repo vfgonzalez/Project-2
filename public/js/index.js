@@ -1,5 +1,5 @@
+// var moment = require("moment")
 $(document).ready(function () {
-
   // Jeremy code:::
 
 
@@ -35,7 +35,7 @@ $(document).ready(function () {
       description: "Enter text here",
     },
     {
-      category: "Teaching Tools",
+      category: "Training Material",
       image: "https://upload.wikimedia.org/wikipedia/commons/9/99/Unofficial_JavaScript_logo_2.svg",
       description: "Enter text here",
     },
@@ -46,11 +46,6 @@ $(document).ready(function () {
     },
     {
       category: "Testing",
-      image: "https://upload.wikimedia.org/wikipedia/commons/9/99/Unofficial_JavaScript_logo_2.svg",
-      description: "Enter text here",
-    },
-    {
-      category: "Random",
       image: "https://upload.wikimedia.org/wikipedia/commons/9/99/Unofficial_JavaScript_logo_2.svg",
       description: "Enter text here",
     },
@@ -88,12 +83,32 @@ $(document).ready(function () {
       category: "Common Issues",
       image: "https://upload.wikimedia.org/wikipedia/commons/9/99/Unofficial_JavaScript_logo_2.svg",
       description: "Enter text here",
+    },
+    {
+      category: "Job Resources",
+      image: "https://upload.wikimedia.org/wikipedia/commons/9/99/Unofficial_JavaScript_logo_2.svg",
+      description: "Enter text here",
+    },
+    {
+      category: "HTML",
+      image: "https://upload.wikimedia.org/wikipedia/commons/9/99/Unofficial_JavaScript_logo_2.svg",
+      description: "Enter text here",
+    },
+    {
+      category: "Other",
+      image: "https://upload.wikimedia.org/wikipedia/commons/9/99/Unofficial_JavaScript_logo_2.svg",
+      description: "Enter text here",
+    },
+    {
+      category: "Slack",
+      image: "https://upload.wikimedia.org/wikipedia/commons/9/99/Unofficial_JavaScript_logo_2.svg",
+      description: "Enter text here",
+    },
+    {
+      category: "Twilio",
+      image: "https://upload.wikimedia.org/wikipedia/commons/9/99/Unofficial_JavaScript_logo_2.svg",
+      description: "Enter text here",
     }
-    // {
-    //   category: "Job Resources",
-    //   image: "https://upload.wikimedia.org/wikipedia/commons/9/99/Unofficial_JavaScript_logo_2.svg",
-    //   description: "Enter text here",
-    // }
 
   ]
 
@@ -125,24 +140,24 @@ $(document).ready(function () {
 
   // blogContainer holds all of our posts
   var blogContainer = $(".blog-container");
-  var postCategorySelect = $("#category");
+  // var postCategorySelect = $("#category"); -- old code related to dropdown
   var postCategorySel = $(".category");
-  console.log(postCategorySelect)
+
+
   // Click events for the edit and delete buttons
 
+  $(document).on("click", "button.upBtn", handlePostUpvote);
+  $(document).on("click", "button.downVote", handlePostDownVote);
+  
 
-  $(this).on("click", "button.upBtn", handlePostUpvote);
-
-  $(this).on("click", "button.downVote", handlePostDownVote);
-
-  postCategorySelect.on("change", handleCategoryChange);
+  // postCategorySelect.on("change", handleCategoryChange); -- old code related to dropdown
   postCategorySel.on("click", handleCategoryChange2);
+ 
 
   var post;
 
   // This function grabs posts from the database and updates the view
   function getPosts(category) {
-    // console.log("the getpost category is " + category)
     var categoryString = category || "";
     console.log("the getpost category is " + category)
     if (categoryString) {
@@ -168,8 +183,8 @@ $(document).ready(function () {
       url: "/api/posts/down/" + id
     })
       .then(function () {
-        getPosts(postCategorySelect.val());
-        console.log(postCategorySelect.val());
+        getPosts(postCategorySel.val());
+        console.log(postCategorySel.val());
 
       });
   }
@@ -177,8 +192,7 @@ $(document).ready(function () {
   // Getting the initial list of posts
   getPosts();
 
-  // InitializeRows handles appending all of our constructed post HTML inside
-  // blogContainer
+  // InitializeRows handles appending all of our constructed post HTML inside blogContainer
   function initializeRows() {
     blogContainer.empty();
     var postsToAdd = [];
@@ -219,8 +233,6 @@ $(document).ready(function () {
     upBtn.addClass("upBtn btn btn-default btn-outline-success");
 
 
-
-
     // Added attribute id 'voteCounter' to newVoteCount
     newVoteCount.attr('id', 'voteCounter');
     var editBtn = $("<button>");
@@ -252,9 +264,9 @@ $(document).ready(function () {
     })
     newPostTitle.text(post.title + " ");
     newPostBody.text(post.description);
-    // var formattedDate = new Date(post.createdAt);
-    // Changes in time/date
-    formattedDate = moment(post.createdAt).format("MMMM Do YYYY");
+    var formattedDate = new Date(post.createdAt);
+    // Changes in time/date .utcOffset(-8)
+    formattedDate = moment(post.createdAt).format("ddd, MMM Do YYYY");
     newPostDate.text(formattedDate);
     newPostDate.css({
       float: "right",
@@ -272,7 +284,6 @@ $(document).ready(function () {
     newPostCardBody.append(newPostBody);
     newPostCardBody.append(newPostLink);
     newPostCardBody.append(newPostAuthor);
-
     newPostCard.append(newPostCardHeading);
     newPostCard.append(newPostCardBody);
     newPostCard.data("post", post);
@@ -280,8 +291,7 @@ $(document).ready(function () {
   }
 
 
-  // This function figures out which post we want to downvote and then calls
-  // downvote
+  // This function figures out which post we want to downvote and then calls downvote
   function handlePostDownVote() {
     var currentPost = $(this)
       .parent()
@@ -290,16 +300,6 @@ $(document).ready(function () {
     downVotePost(currentPost.id);
   }
 
-  // This function does an API call to delete posts
-  // function deletePost(id) {
-  //   $.ajax({
-  //     method: "DELETE",
-  //     url: "/api/posts/" + id
-  //   })
-  //     .then(function() {
-  //       getPosts(postCategorySelect.val());
-  //     });
-  // }
 
   // This function finds id of the voted post, and calls the put request function
   function handlePostUpvote() {
@@ -335,36 +335,29 @@ $(document).ready(function () {
   // This function handles reloading new posts when the category changes
 
 
-  function handleCategoryChange() {
+  function handleCategoryChange2() {
     var newPostCategory = $(this).val();
     getPosts(newPostCategory);
-    console.log(newPostCategory)
+    console.log("new post category = " + newPostCategory)
   }
+
+
+// JEREMY WORK BELOW 
+// PUT CLOSING TAG ON LINE 361 TO RESOLVE LINTING ERROR
+
+  // Scroll to function. When card button is clicked, go to div associated with the .blog-container class. 
+  $(".category").click(function () {
+    $('html,body').animate({
+      scrollTop: $(".blog-container").offset().top
+    },
+      'slow');
+  });
+    // temporary sms alert function, not working yet
+    $(".sms-alert").click(function(){
+      $(".alert").alert('close')
+    })  
+
 });
-
-
-
-function handleCategoryChange2() {
-  var newPostCategory = $(this).val();
-  getPosts(newPostCategory);
-  console.log(newPostCategory)
-
-}
-
-
-// Scroll to function. When card button is clicked, go to div associated with the .blog-container class. 
-$(".category").click(function () {
-  $('html,body').animate({
-    scrollTop: $(".blog-container").offset().top
-  },
-    'slow');
-});
-
-  
-
-// });
-
-
 
 
 

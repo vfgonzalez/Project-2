@@ -25,7 +25,7 @@ form#post {
   resize: none;
 }
 
-.card-header button.downVote,
+.card-header,button.downVote,.card-body,
 button.edit {
   float: right;
   margin: 5px;
@@ -48,4 +48,9 @@ button.edit {
 
  .btn-light {
    margin-bottom:50px;
+ }
+
+ .btn-outline-success{
+  float:right;
+  margin-top: 5px;
  }
