@@ -131,10 +131,10 @@ $(document).ready(function () {
   // Click events for the edit and delete buttons
 
 
-  $(document).on("click", "button.upBtn", handlePostUpvote);
+  $(this).on("click", "button.upBtn", handlePostUpvote);
 
-  $(document).on("click", "button.downVote", handlePostDownVote);
- 
+  $(this).on("click", "button.downVote", handlePostDownVote);
+
   postCategorySelect.on("change", handleCategoryChange);
   postCategorySel.on("click", handleCategoryChange2);
 
@@ -167,10 +167,10 @@ $(document).ready(function () {
       method: "PUT",
       url: "/api/posts/down/" + id
     })
-      .then(function() {
+      .then(function () {
         getPosts(postCategorySelect.val());
         console.log(postCategorySelect.val());
-        
+
       });
   }
 
@@ -201,11 +201,11 @@ $(document).ready(function () {
     downVoteBtn.addClass("downVote btn btn-danger");
     $('#downVoteBtn').on('click', function () {
       console.log("This click works ok");
-      
+
       Post.newVoteCount--
     })
     downVoteBtn.attr("id", "down");
-    
+
     var newVoteCount = $("<span>")
     newVoteCount.text(post.voteCount)
     newVoteCount.css({
@@ -220,7 +220,7 @@ $(document).ready(function () {
 
 
 
-    
+
     // Added attribute id 'voteCounter' to newVoteCount
     newVoteCount.attr('id', 'voteCounter');
     var editBtn = $("<button>");
@@ -318,7 +318,7 @@ $(document).ready(function () {
       method: "PUT",
       url: "/api/posts/up/" + id
     })
-      .then(function() {
+      .then(function () {
         getPosts(postCategorySelect.val())
       })
   }
@@ -344,21 +344,21 @@ $(document).ready(function () {
 
 
 
-  function handleCategoryChange2() {
-    var newPostCategory = $(this).val();
-    getPosts(newPostCategory);
-    console.log(newPostCategory)
-  
-  }
+function handleCategoryChange2() {
+  var newPostCategory = $(this).val();
+  getPosts(newPostCategory);
+  console.log(newPostCategory)
+
+}
 
 
-  // Scroll to function. When card button is clicked, go to div associated with the .blog-container class. 
-  $(".category").click(function () {
-    $('html,body').animate({
-      scrollTop: $(".blog-container").offset().top
-    },
-      'slow');
-  });
+// Scroll to function. When card button is clicked, go to div associated with the .blog-container class. 
+$(".category").click(function () {
+  $('html,body').animate({
+    scrollTop: $(".blog-container").offset().top
+  },
+    'slow');
+});
 
   
 
