@@ -30,6 +30,8 @@ var twilioroutes = require('./routes/twilio-routes.js')
 // ...
 
 app.use('/', twilioroutes)
+app.use('/sms', twilioroutes)
+app.use('/sms/post', twilioroutes)
 
 // Routes
 // =============================================================
