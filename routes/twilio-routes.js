@@ -38,15 +38,15 @@ function addAlert(){
   console.log("AddAlert function Runs");
   
 }
-var validationForHost = twilio.webhook(password, {
-  host:'slackerflow.herokuapp.com',
-  protocol:'https'
-});
+// var validationForHost = twilio.webhook(password, {
+//   host:'slackerflow.herokuapp.com',
+//   protocol:'https'
+// });
 
 
 
 // module.exports = function (app) {
-  router.post('/sms',validationForHost, (req, res, next) => {
+  router.post('/sms', (req, res, next) => {
     const twiml = new MessagingResponse();
     // ===initial message, auto reply
     twiml.message('Welcome to Slack overflow! Thanks for sharing your link! Visit us at www.slackerflow.herokuapp.com !');
@@ -77,7 +77,7 @@ var validationForHost = twilio.webhook(password, {
   } 
   )
 
-  router.post("/sms/post", validationForHost, function(req, res) {
+  router.post("/sms/post", function(req, res) {
     // console.log("****Redirect Object: "+ req.body.Body);
     db.resources.create({
       title: "Mobile Submission",
