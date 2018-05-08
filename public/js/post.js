@@ -28,7 +28,6 @@ $(document).ready(function() {
     
     event.preventDefault()
     
-    
     // Wont submit the post if we are missing a body or a title
     // if (!titleInput.val().trim() || !bodyInput.val().trim()) {
     //   return;
