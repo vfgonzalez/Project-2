@@ -6,11 +6,11 @@
 // =============================================================
 var express = require("express");
 var bodyParser = require("body-parser");
-
+var router = express.Router()
 // Sets up the Express App
 // =============================================================
 var app = express();
-var PORT = process.env.PORT || 8080;
+var PORT = process.env.PORT || 1337;
 
 // Requiring our models for syncing
 var db = require("./models");
@@ -25,10 +25,22 @@ app.use(bodyParser.json());
 // Static directory
 app.use(express.static("public"));
 
+// var twilioroutes = require('./routes/twilio-routes.js')
+
+// ...
+
+// app.use('/', twilioroutes)
+// app.use('/sms', twilioroutes)
+// app.use('/sms/post', twilioroutes)
+
 // Routes
 // =============================================================
 require("./routes/api-routes.js")(app);
 require("./routes/html-routes.js")(app);
+
+// require("./routes/slack.js")(app);
+// require("./routes/twilio-routes.js")(app);
+
 
 // Syncing our sequelize models and then starting our Express app
 // =============================================================

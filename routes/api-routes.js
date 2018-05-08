@@ -25,6 +25,7 @@ module.exports = function(app) {
 
   // Get route for returning posts of a specific category
   app.get("/api/posts/category/:category", function(req, res) {
+    console.log(req.params.category)
     db.resources.findAll({
       where: {
         category: req.params.category
@@ -48,7 +49,7 @@ module.exports = function(app) {
   });
 
   // POST route for saving a new post
-  app.post("/api/posts", function(req, res) {
+  app.post("/api/posts/", function(req, res) {
     console.log(req.body);
     db.resources.create({
       title: req.body.title,
@@ -58,16 +59,16 @@ module.exports = function(app) {
       author : req.body.author
 
     })
-      .then(function(dbPost) {
+    .then(function(dbPost) {
         res.json(dbPost);
+        console.log("api-routes.js line::: "+ dbPost);
+        
       });
   });
 
-  // DELETE route for deleting posts
-// create var 'decOne' to decrement voteCount
-  //  TO Be changed to  DOWN VOTE
 
-  app.put("/api/posts/:id", function (req, res) {
+  // PUT route for updating DOWN VOTE
+  app.put("/api/posts/down/:id", function (req, res) {
     console.log('backend ' + req.params.id)
     db.resources.update({
       voteCount: sequelize.literal('voteCount - 1')
@@ -76,21 +77,28 @@ module.exports = function(app) {
           id: req.params.id
         }
       }).then(function (dbPost) {
+        // location.reload();
         res.json(dbPost);
       });
   });
 
 
+
+  
+  
   // PUT route for updating UP VOTE
   app.put("/api/posts/up/:id", function (req, res) {
-    db.resources.update({ voteCount: sequelize.literal('voteCount + 1') }, {
+    db.resources.update({ 
+      voteCount: sequelize.literal('voteCount + 1') 
+    }, {
         where: {
           id: req.params.id
         }
       }).then(function (dbPost) {
         console.log('dbPost: ' + dbPost)
         res.json(dbPost);
-      }).catch(function (error) {
+        // location.reload()
+;      }).catch(function (error) {
         console.log(error)
       });
   });

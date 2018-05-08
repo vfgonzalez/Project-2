@@ -1,6 +1,13 @@
 /* Lopes additions */
 .jumbotron{
-  background-color: #fff;
+  margin-top: 35px;
+  background: rgba(0, 0, 0, 0.6);
+  color: black;
+}
+
+#cardSection  {
+  background-color: rgb(168, 221, 228);
+  margin-bottom: 50px;
 }
 
 
@@ -18,7 +25,7 @@ form#post {
   resize: none;
 }
 
-.card-header button.downVote,
+.card-header,button.downVote,.card-body,
 button.edit {
   float: right;
   margin: 5px;
@@ -28,3 +35,22 @@ button.edit {
 .card {
   margin-bottom: 25px;
 }
+
+
+ .btn {
+    width:100px;
+    
+ }
+
+ .btn-group {
+  margin-left: 40px;
+ }
+
+ .btn-light {
+   margin-bottom:50px;
+ }
+
+ .btn-outline-success{
+  float:right;
+  margin-top: 5px;
+ }
