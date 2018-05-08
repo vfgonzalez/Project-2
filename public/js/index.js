@@ -371,10 +371,3 @@ $(document).ready(function () {
 });
 
 // });
-
-
-
-
-
-
-})
