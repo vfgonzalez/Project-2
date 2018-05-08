@@ -98,6 +98,7 @@ $(document).ready(function () {
       image: "./images/random.jpg",
       description: "Enter text here",
     }
+
     // {
     //   name: "Slack",
     //   image: "https://upload.wikimedia.org/wikipedia/commons/9/99/Unofficial_JavaScript_logo_2.svg",
@@ -108,6 +109,7 @@ $(document).ready(function () {
     //   image: "https://upload.wikimedia.org/wikipedia/commons/9/99/Unofficial_JavaScript_logo_2.svg",
     //   description: "Enter text here",
     // }
+
 
   ]
 
@@ -155,8 +157,8 @@ $('#catCard').append(`
   var postCategorySel = $(".name");
 
   var newPostCategory
-  // Click events for the edit and delete buttons
 
+  // Click events for the upvote and downvote buttons
   $(document).on("click", "button.upBtn", handlePostUpvote);
   $(document).on("click", "button.downVote", handlePostDownVote);
 
@@ -165,19 +167,15 @@ $('#catCard').append(`
   postCategorySel.on("click", handleCategoryChange2);
   // $(document).on("click", ".name", handleCategoryChange2);
  
-
   var post;
 
   // This function grabs posts from the database and updates the view
   function getPosts(category) {
     var categoryString = category || "";
-    console.log("the getpost category is " + category)
     if (categoryString) {
       categoryString = "/category/" + categoryString;
     }
-    console.log("category string = " + categoryString)
     $.get("/api/posts" + categoryString, function (data) {
-      console.log("Posts Rendering:::", data);
       post = data;
       if (!post || !post.length) {
         displayEmpty();
@@ -189,21 +187,15 @@ $('#catCard').append(`
   }
 
   // This function does an API call to downVote posts
-  function downVotePost(id) {
+  function downVotePost(id, category) {
     $.ajax({
       method: "PUT",
       url: "/api/posts/down/" + id
     })
       .then(function () {
-        // location.reload() / postCategorySel.val()
-        // getPosts();
-        console.log(postCategorySel.val());
-
+        getPosts(category)
       });
-  }
-
-  // Getting the initial list of posts
-  
+  }  
 
   // InitializeRows handles appending all of our constructed post HTML inside blogContainer
   function initializeRows() {
@@ -227,8 +219,6 @@ $('#catCard').append(`
     downVoteBtn.text("Down");
     downVoteBtn.addClass("downVote "+post.category+" btn btn-danger");
     $('#downVoteBtn').on('click', function () {
-      console.log("This click works ok");
-
       Post.newVoteCount--
     })
     downVoteBtn.attr("id", "down");
@@ -310,40 +300,27 @@ $('#catCard').append(`
       .parent()
       .parent()
       .data("post");
-    downVotePost(currentPost.id);
+    downVotePost(currentPost.id, currentPost.category);
   }
 
 
   // This function finds id of the voted post, and calls the put request function
-  function handlePostUpvote() {
-    console.log('Upvote Button Pressed')
-    console.log("*****************");
-    
-    console.log(this);
-    
+  function handlePostUpvote() { 
     var currentPost = $(this)
       .parent()
       .parent()
       .data("post");
-    console.log('post id: ' + currentPost.id)
-    console.log('post voteCount ' + currentPost.voteCount)
-    upVotePost(currentPost.id)
+    upVotePost(currentPost.id, currentPost.category)
   }
 
   // This function does an API call to upvote post
-  function upVotePost(id) {
+  function upVotePost(id, category) {
     $.ajax({
       method: "PUT",
       url: "/api/posts/up/" + id
     })
       .then(function () {
-        // location.reload() / postCategorySel.val()
-        // getPosts()
-        // console.log(this);
-        console.log("888888");
-        
-        // console.log(currentPost.category);
-        
+        getPosts(category)
       })
   }
 
@@ -357,15 +334,15 @@ $('#catCard').append(`
   }
 
   // This function handles reloading new posts when the category changes
-
-
   function handleCategoryChange2(event) {
     event.preventDefault()
+
     // var newPostCategory = $(this).val();
     var newPostCategory = $(this).attr("data-name");
     console.log("new post category = " + newPostCategory)
     getPosts(newPostCategory);
     // console.log("new post category = " + newPostCategory)
+
   }
 
 
@@ -386,3 +363,4 @@ $('#catCard').append(`
 });
 
 // });
+
