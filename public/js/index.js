@@ -235,12 +235,14 @@ $('#catCard').append(`
     upBtn.text("Up");
     upBtn.addClass("upBtn "+post.category+" btn btn-default btn-outline-success");
 
-
+    // JEREMY WORK
+    // COMMENTED OUT DUMMY editBtn FOR CLEANING UP REDUNDANT CODE
     // Added attribute id 'voteCounter' to newVoteCount
-    newVoteCount.attr('id', 'voteCounter');
-    var editBtn = $("<button>");
-    editBtn.text("Upvote");
-    editBtn.addClass("edit btn btn-default btn-outline-success");
+    // newVoteCount.attr('id', 'voteCounter');
+    // var editBtn = $("<button>");
+    // editBtn.text("Upvote");
+    // editBtn.addClass("edit btn btn-default btn-outline-success");
+    // END JEREMY WORK
 
 
     var newPostTitle = $("<h2>");
