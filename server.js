@@ -25,13 +25,13 @@ app.use(bodyParser.json());
 // Static directory
 app.use(express.static("public"));
 
-// var twilioroutes = require('./routes/twilio-routes.js')
+var twilioroutes = require('./routes/twilio-routes.js')
 
 // ...
 
-// app.use('/', twilioroutes)
-// app.use('/sms', twilioroutes)
-// app.use('/sms/post', twilioroutes)
+app.use('/', twilioroutes)
+app.use('/sms', twilioroutes)
+app.use('/sms/post', twilioroutes)
 
 // Routes
 // =============================================================
@@ -39,7 +39,7 @@ require("./routes/api-routes.js")(app);
 require("./routes/html-routes.js")(app);
 
 // require("./routes/slack-routes.js")(app);
-require("./routes/twilio-routes.js")(app);
+// çrequire("./routes/twilio-routes.js")(app);
 
 
 // Syncing our sequelize models and then starting our Express app

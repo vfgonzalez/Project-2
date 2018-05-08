@@ -5,14 +5,14 @@ const moment = require("moment");
 var express = require("express")
 var router = express.Router()
 var https = require("https")
-
+var twilio = require("twilio")
 
 
 // middleware that is specific to this router
-// router.use(function timeLog (req, res, next) {
-//   console.log('Time: ', Date.now())
-//   next()
-// })
+router.use(function timeLog (req, res, next) {
+  console.log('Time: ', Date.now())
+  next()
+})
 
 const username = process.env.TWILIO_ACCOUNT_SID;
 const password = process.env.TWILIO_AUTH_TOKEN;
@@ -38,11 +38,15 @@ function addAlert(){
   console.log("AddAlert function Runs");
   
 }
+var validationForHost = twilio.webhook(password, {
+  host:'slackerflow.herokuapp.com',
+  protocol:'https'
+});
 
 
 
-module.exports = function (app) {
-  app.post('/sms', (req, res, next) => {
+// module.exports = function (app) {
+  router.post('/sms',validationForHost, (req, res, next) => {
     const twiml = new MessagingResponse();
     // ===initial message, auto reply
     twiml.message('Welcome to Slack overflow! Thanks for sharing your link! Visit us at www.slackerflow.herokuapp.com !');
@@ -73,7 +77,7 @@ module.exports = function (app) {
   } 
   )
 
-  app.post("/sms/post", function(req, res) {
+  router.post("/sms/post", validationForHost, function(req, res) {
     // console.log("****Redirect Object: "+ req.body.Body);
     db.resources.create({
       title: "Mobile Submission",
@@ -92,11 +96,11 @@ module.exports = function (app) {
   });
 
 
-// module.exports = router
+module.exports = router
 
 
 
-}
+// }
 
 
 
