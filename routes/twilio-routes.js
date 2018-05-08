@@ -4,19 +4,19 @@ var db = require("../models");
 const moment = require("moment");
 var express = require("express")
 var router = express.Router()
-// var https = require("https")
-
+var https = require("https")
+var twilio = require("twilio")
 
 
 // middleware that is specific to this router
-router.use(function timeLog (req, res, next) {
-  console.log('Time: ', Date.now())
-  next()
-})
+// router.use(function timeLog (req, res, next) {
+//   console.log('Time: ', Date.now())
+//   next()
+// })
 
-const accountSid = process.env.TWILIO_ACCOUNT_SID_LIVE;
-const authToken = process.env.TWILIO_AUTH_TOKEN_LIVE;
-const client = require('twilio')(accountSid, authToken);
+const username = process.env.TWILIO_ACCOUNT_SID;
+const password = process.env.TWILIO_AUTH_TOKEN;
+const client = require('twilio')(username, password);
 
 
 
@@ -38,6 +38,10 @@ function addAlert(){
   console.log("AddAlert function Runs");
   
 }
+// var validationForHost = twilio.webhook(password, {
+//   host:'slackerflow.herokuapp.com',
+//   protocol:'https'
+// });
 
 
 
@@ -92,7 +96,7 @@ function addAlert(){
   });
 
 
-module.exports = router
+// module.exports = router
 
 
 

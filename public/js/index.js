@@ -30,84 +30,87 @@ $(document).ready(function () {
 
     {
       name: "General Tools",
-      image: "https://upload.wikimedia.org/wikipedia/commons/9/99/Unofficial_JavaScript_logo_2.svg",
+      image: "./images/generaltools.jpg",
       description: "Enter text here",
     },
     {
-      name: "Training Material",
-      image: "https://upload.wikimedia.org/wikipedia/commons/9/99/Unofficial_JavaScript_logo_2.svg",
+      name: "Teaching Resources",
+      image: "./images/teachingresources.jpg",
       description: "Enter text here",
     },
     {
       name: "CSS",
-      image: "https://upload.wikimedia.org/wikipedia/commons/9/99/Unofficial_JavaScript_logo_2.svg",
+      image: "./images/css.jpg",
       description: "Enter text here",
     },
     {
       name: "Testing",
-      image: "https://upload.wikimedia.org/wikipedia/commons/9/99/Unofficial_JavaScript_logo_2.svg",
+      image: "./images/testing.jpg",
       description: "Enter text here",
     },
     {
       name: "JavaScript",
-      image: "https://upload.wikimedia.org/wikipedia/commons/9/99/Unofficial_JavaScript_logo_2.svg",
+      image: "./images/javascript.jpg",
       description: "Enter text here",
     },
     {
       name: "Articles",
-      image: "https://upload.wikimedia.org/wikipedia/commons/9/99/Unofficial_JavaScript_logo_2.svg",
+      image: "/images/articles.jpg",
       description: "Enter text here",
     },
     {
       name: "APIs",
-      image: "https://upload.wikimedia.org/wikipedia/commons/9/99/Unofficial_JavaScript_logo_2.svg",
+      image: "./images/api.jpg",
       description: "Enter text here",
     },
     {
       name: "Databases",
-      image: "https://upload.wikimedia.org/wikipedia/commons/9/99/Unofficial_JavaScript_logo_2.svg",
+      image: "./images/databases.jpg",
       description: "Enter text here",
     },
     {
-      name: "Node",
-      image: "https://upload.wikimedia.org/wikipedia/commons/9/99/Unofficial_JavaScript_logo_2.svg",
+      name: "NPM Packages",
+      image: "./images/npmpackages.jpg",
       description: "Enter text here",
     },
     {
       name: "Templates",
-      image: "https://upload.wikimedia.org/wikipedia/commons/9/99/Unofficial_JavaScript_logo_2.svg",
+      image: "./images/templates.jpg",
       description: "Enter text here",
     },
     {
       name: "Common Issues",
-      image: "https://upload.wikimedia.org/wikipedia/commons/9/99/Unofficial_JavaScript_logo_2.svg",
+      image: "./images/commonissues.jpg",
       description: "Enter text here",
     },
     {
       name: "Job Resources",
-      image: "https://upload.wikimedia.org/wikipedia/commons/9/99/Unofficial_JavaScript_logo_2.svg",
+      image: "./images/jobresources.jpg",
       description: "Enter text here",
     },
     {
       name: "HTML",
-      image: "https://upload.wikimedia.org/wikipedia/commons/9/99/Unofficial_JavaScript_logo_2.svg",
+      image: "./images/html.jpg",
       description: "Enter text here",
     },
     {
-      name: "Other",
-      image: "https://upload.wikimedia.org/wikipedia/commons/9/99/Unofficial_JavaScript_logo_2.svg",
-      description: "Enter text here",
-    },
-    {
-      name: "Slack",
-      image: "https://upload.wikimedia.org/wikipedia/commons/9/99/Unofficial_JavaScript_logo_2.svg",
-      description: "Enter text here",
-    },
-    {
-      name: "Twilio",
-      image: "https://upload.wikimedia.org/wikipedia/commons/9/99/Unofficial_JavaScript_logo_2.svg",
+      name: "Random",
+      image: "./images/random.jpg",
       description: "Enter text here",
     }
+
+    // {
+    //   name: "Slack",
+    //   image: "https://upload.wikimedia.org/wikipedia/commons/9/99/Unofficial_JavaScript_logo_2.svg",
+    //   description: "Enter text here",
+    // },
+    // {
+    //   name: "Twilio",
+    //   image: "https://upload.wikimedia.org/wikipedia/commons/9/99/Unofficial_JavaScript_logo_2.svg",
+    //   description: "Enter text here",
+    // }
+
+
   ]
 
 
@@ -116,24 +119,36 @@ $(document).ready(function () {
     var image = catArr[i].image;
     var description = catArr[i].description;
 
-    $('#catCard').append(`
-          <div class="col-md-3">
-          <div class="card mb-4 box-shadow">
-            <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail" alt="Thumbnail [100%x225]"
-              style="height: 75px; width: 100%; display: block;" src="${image}" data-holder-rendered="true">
-            <div class="card-body">
-              <h4 class = "text-center">${name}</h4>
-              <p class="card-text"></p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary name center-block" value="${name}">View</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>`)
+  //   $('#catCard').append(`
+  //         <div class="col-md-3">
+  //         <div class="card mb-4 box-shadow">
+  //           <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail" alt="Thumbnail [100%x225]"
+  //             style="height: 75px; width: 100%; display: block;" src=${image} data-holder-rendered="true">
+  //           <div class="card-body">
+  //             <h4 class = "text-center">${name}</h4>
+  //             <p class="card-text"></p>
+  //             <div class="d-flex justify-content-between align-items-center">
+  //               <div class="btn-group">
+  //                 <button type="button" class="btn btn-sm btn-outline-secondary name center-block" value="${name}">View</button>
+  //               </div>
+  //             </div>
+  //           </div>
+  //         </div>
+  //       </div>`)
 
-  }
+  // }
+
+
+
+$('#catCard').append(`
+<div class="col-md-3">
+  <div>
+    <a href="#">
+      <img class="name" src="${image}" alt="image" style="width:100%" data-name="${name}">
+    </a>
+  </div>
+</div>`)
+}
 
 
   // blogContainer holds all of our posts
@@ -146,10 +161,11 @@ $(document).ready(function () {
   // Click events for the upvote and downvote buttons
   $(document).on("click", "button.upBtn", handlePostUpvote);
   $(document).on("click", "button.downVote", handlePostDownVote);
-  
+
 
   // postCategorySelect.on("change", handleCategoryChange); -- old code related to dropdown
   postCategorySel.on("click", handleCategoryChange2);
+  // $(document).on("click", ".name", handleCategoryChange2);
  
   var post;
 
@@ -320,8 +336,13 @@ $(document).ready(function () {
   // This function handles reloading new posts when the category changes
   function handleCategoryChange2(event) {
     event.preventDefault()
-    var newPostCategory = $(this).val();
+
+    // var newPostCategory = $(this).val();
+    var newPostCategory = $(this).attr("data-name");
+    console.log("new post category = " + newPostCategory)
     getPosts(newPostCategory);
+    // console.log("new post category = " + newPostCategory)
+
   }
 
 
@@ -342,11 +363,4 @@ $(document).ready(function () {
 });
 
 // });
-
-
-
-
-
-
-
 
