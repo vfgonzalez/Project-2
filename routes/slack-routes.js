@@ -40,7 +40,7 @@ function getClientByTeamId(teamId) {
   }
   return null;
 }
-
+var accessToken = process.env.OAUTH_ACCESS_TOKEN
 // Initialize Add to Slack (OAuth) helpers
 passport.use(new SlackStrategy({
   clientID: process.env.SLACK_CLIENT_ID,
