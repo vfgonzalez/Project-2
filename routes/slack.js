@@ -7,7 +7,7 @@ const passport = require('passport');
 const SlackStrategy = require('@aoberoi/passport-slack').default.Strategy;
 const http = require('http');
 const express = require('express');
-
+// var https = require("https")
 const bodyParser = require('body-parser');
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
@@ -54,6 +54,13 @@ passport.use(new SlackStrategy({
 const app = express();
 app.use(bodyParser.json());
 
+function linkParse(data){
+  var str = data;
+    var n = str.indexOf("|");
+    var url = str.splice(1,n)
+    console.log("Spliced message: " +url);
+
+}
 
 
 module.exports = function(app){
@@ -91,7 +98,8 @@ slackEvents.on('message', (message, body) => {
     if (!slack) {
       return console.error('No authorization found for this team. Did you install this app again after restarting?');
     }
-    console.log(message.text);
+    
+    linkParse(message.text)
     // Respond to the message back in the same channel
     slack.chat.postMessage({ channel: message.channel, text: `:tada: Hooray! Thanks <@${message.user}>, your post has been added to www.slackerflow.herokuapp.com !  ` })
       .catch(console.error);
