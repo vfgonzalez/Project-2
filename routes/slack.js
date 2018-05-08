@@ -5,16 +5,17 @@ const slackEventsApi = require('@slack/events-api');
 const SlackClient = require('@slack/client').WebClient;
 const passport = require('passport');
 const SlackStrategy = require('@aoberoi/passport-slack').default.Strategy;
-const http = require('http');
+const https = require('https');
+var db = require("../models");
+const moment = require("moment");
 const express = require('express');
 // var https = require("https")
 const bodyParser = require('body-parser');
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
-
 var userMsg
 
 
-
+var postingStamp = moment().format("ddd, MMM Do YYYY");
 
 
 // *** Initialize event adapter using verification token from environment variables ***
@@ -54,13 +55,9 @@ passport.use(new SlackStrategy({
 const app = express();
 app.use(bodyParser.json());
 
-function linkParse(data){
-  var str = data;
-    var n = str.indexOf("|");
-    var url = str.splice(1,n)
-    console.log("Spliced message: " +url);
 
-}
+var linkObj = {}
+
 
 
 module.exports = function(app){
@@ -89,7 +86,7 @@ app.use('/slack/events', slackEvents.expressMiddleware());
 // *** Attach listeners to the event adapter ***
 
 // *** Greeting any user that says "hi" ***
-slackEvents.on('message', (message, body) => {
+slackEvents.on('app_mention', (message, body) => {
   // Only deal with messages that have no subtype (plain messages) and contain 'hi'
   if (!message.subtype && message.text.indexOf("") >= 0) {
     // Initialize a client
@@ -98,8 +95,27 @@ slackEvents.on('message', (message, body) => {
     if (!slack) {
       return console.error('No authorization found for this team. Did you install this app again after restarting?');
     }
+      console.log(message.text);
+      
+
+      var str = message.text;
+    var n = str.indexOf("|");
+    var url = str.slice(1,n)
+    console.log("Sliced message: " +url);
+    db.resources.create({
+      title: "Slack Submission",
+      description: "Shared link via Slackbot",
+      category: "Slack Link",
+      link : url,
+      author : "Slack User on " + postingStamp
+
+    }).then(function(){
+      console.log("posted to Database")
+    })
+
+
+
     
-    linkParse(message.text)
     // Respond to the message back in the same channel
     slack.chat.postMessage({ channel: message.channel, text: `:tada: Hooray! Thanks <@${message.user}>, your post has been added to www.slackerflow.herokuapp.com !  ` })
       .catch(console.error);
