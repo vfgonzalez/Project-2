@@ -9,10 +9,10 @@ var twilio = require("twilio")
 
 
 // middleware that is specific to this router
-router.use(function timeLog (req, res, next) {
-  console.log('Time: ', Date.now())
-  next()
-})
+// router.use(function timeLog (req, res, next) {
+//   console.log('Time: ', Date.now())
+//   next()
+// })
 
 const username = process.env.TWILIO_ACCOUNT_SID;
 const password = process.env.TWILIO_AUTH_TOKEN;
@@ -96,7 +96,7 @@ function addAlert(){
   });
 
 
-module.exports = router
+// module.exports = router
 
 
 
