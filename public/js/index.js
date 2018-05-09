@@ -1,30 +1,7 @@
 $(document).ready(function () {
-  // Jeremy code:::
+ 
 
   getPosts();
-  // 
-
-
-
-
-  // Thomas work area
-
-
-
-
-  // 
-
-
-  // christian work area
-
-  // 
-
-
-
-  /*when making changes, COMMENT EACH SECTION CHANG
-
-  */
-
 
   var catArr = [
 

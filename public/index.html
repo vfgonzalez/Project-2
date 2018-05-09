@@ -48,7 +48,7 @@
         </div>
       </div>
     </div>
-    <div class="navbar navbar-dark bg-dark box-shadow">
+    <div class="navbar fixed-top navbar-dark bg-dark box-shadow">
       <div class="container d-flex justify-content-between">
         <a href="/index" class="navbar-brand d-flex align-items-center">
           <!-- <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -58,16 +58,20 @@
                     </svg> -->
           <strong>Slack Overflow</strong>
         </a>
-            <span class="sms-alert">
-                <a href="/auth/slack"><img alt="Add to Slack" height="40" width="139" src="https://platform.slack-edge.com/img/add_to_slack.png" srcset="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x" /></a>
-              
-            </span>
+        <span class="sms-alert">
+          <a href="/auth/slack">
+            <img alt="Add to Slack" height="40" width="139" src="https://platform.slack-edge.com/img/add_to_slack.png" srcset="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x"
+            />
+          </a>
+
+        </span>
         <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader"
           aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
       </div>
     </div>
+
   </header>
   <!-- This DIV below is where SMS Alerts will pop in to, empty by design, will populate new alert when invoked in SMS -->
 
@@ -82,36 +86,21 @@
     <div class="jumbotron mx-auto d-block" style="width: 87%">
       <h1 class="display-4 text-center">Slack Overflow </h1>
       <p class="lead text-center">Welcome to Slack Overflow. An online community where developers can share resources</p>
-
-
     </div>
 
-    <!-- <section class="jumbotron text-center">
-      <div class="container">
-        <h1 class="jumbotron-heading">Slack Overflow</h1>
-        <p class="lead text-muted">Welcome to Slack Overflow. An online community where developers can share resources.</p>
-        <!-- <p>
-                  <a href="#" class="btn btn-primary my-2">Main call to action</a>
-                  <a href="#" class="btn btn-secondary my-2">Secondary action</a>
-              </p> -->
-    </div>
-
-    <!-- </section> -->
-
+    <!-- Category card container -->
     <div class="container text-center">
-
       <div class="container" id="cardSection">
-
         <div class="album py-5 mx-auto d-block" style="width: 95%">
           <div class="container">
-
             <div class="row" id="catCard">
-
             </div>
           </div>
         </div>
       </div>
     </div>
+
+    <!-- Old code for drop down -->
     <!-- <div class="container">
       <div class="row mt-4">
         <div class="col-md-4">
@@ -135,10 +124,13 @@
             </select>
           </div>
         </div> -->
-    <div class="col-md-2">
+
+
+    <!-- <div class="col-md-2">
       <a class="btn btn-light" href="/post">New Post</a>
-    </div>
-    <!-- </div> -->
+    </div> -->
+
+  
 
     <!-- Google Search Bar -->
     <!-- <div>
@@ -159,11 +151,14 @@
               <gcse:search></gcse:search>
         </div> -->
 
-    <div class="row">
-      <div class="col-md-12 blog-container" style="width: 95%">
+    <div class="container" style="width: 95%">
+      <div class="row">
+        <div class="col-md-12 blog-container">
+        </div>
       </div>
     </div>
-    </div>
+
+
 
 
   </main>
