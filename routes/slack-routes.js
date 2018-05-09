@@ -74,7 +74,7 @@ app.get('/auth/slack/callback',
   passport.authenticate('slack', { session: false }),
   (req, res) => {
     // res.send('<p>Slack Overflow was successfully installed on your team.</p>');
-    res.redirect("/")
+    res.redirect("/index")
   },
   (err, req, res, next) => {
     res.status(500).send(`<p>Greet and React failed to install</p> <pre>${err}</pre>`);
