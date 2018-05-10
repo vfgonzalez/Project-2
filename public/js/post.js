@@ -52,7 +52,9 @@ $(document).ready(function () {
       updatePost(newPost);
     }
     else {
+      // $('#modalPost').modal('hide').then(function(){
       submitPost(newPost);
+    // })
     }
 
 
@@ -60,6 +62,9 @@ $(document).ready(function () {
 
   // Submits a new post and brings user to blog page upon completion
   function submitPost(Post) {
+    // Hides post before Refresh
+    // $('#modalPost').modal('hide').then(function(){
+    // Ends hiding of post
     $.post("/api/posts/", Post, function () {
       window.location.href = "/index";
     });
