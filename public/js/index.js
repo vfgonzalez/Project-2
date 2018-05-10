@@ -139,6 +139,7 @@ $(document).ready(function () {
 
   // postCategorySelect.on("change", handleCategoryChange); -- old code related to dropdown
   postCategorySel.on("click", handleCategoryChange2);
+
   // $(document).on("click", ".name", handleCategoryChange2);
 
   var post;
@@ -188,7 +189,7 @@ $(document).ready(function () {
     var newPostCard = $("<div>");
     newPostCard.addClass("card");
     var newPostCardHeading = $("<div>");
-    newPostCardHeading.addClass("card-header");
+    newPostCardHeading.addClass("card-header bg-light");
     var downVoteBtn = $("<button>");
     downVoteBtn.text("Down");
     downVoteBtn.addClass("downVote " + post.category + " btn btn-danger");
@@ -303,7 +304,7 @@ $(document).ready(function () {
     blogContainer.empty();
     var messageH2 = $("<h2>");
     messageH2.css({ "text-align": "center", "margin-top": "50px" });
-    messageH2.html("No posts yet for this category, navigate <a href='/post'>here</a> in order to create a new post.");
+    messageH2.html('No posts yet for this category. Click "Add Post" at top of page');
     blogContainer.append(messageH2);
   }
 
@@ -325,8 +326,9 @@ $(document).ready(function () {
 
   // Scroll to function. When card button is clicked, go to div associated with the .blog-container class. 
   $(".name").click(function () {
+    $('.blog-container').css('margin', '5% 0')
     $('html,body').animate({
-      scrollTop: $(".blog-container").offset().top
+      scrollTop: $(".blog-container").offset().top -100
     },
       'slow');
   });
