@@ -9,7 +9,7 @@ const https = require('https');
 var db = require("../models");
 const moment = require("moment");
 const express = require('express');
-var https = require("https")
+// var https = require("https")
 const bodyParser = require('body-parser');
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 var userMsg
