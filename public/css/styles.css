@@ -1,10 +1,4 @@
-/* Lopes additions */
-.jumbotron {
-  /* margin-top: 105px; */
-  /* background-color: #ffc107;-- not working
-  background-color: rgba(0, 0, 0, 0.6); -- not working*/ 
-  color: black;
-}
+
 
 #slacktoon {
   margin-top:100px;
@@ -13,17 +7,17 @@
 }
 
 
-#cardSection  {
-  /* margin-top: 5%; */
-  /* margin-bottom: -10px; */
-}
+/* #cardSection  {
+  margin-top: 5%;
+  margin-bottom: -10px;
+} */
 
 
 /* Lopes additions */
 
-#parallax-container {
+/* #parallax-container {
 margin-bottom:-68px;
-}
+} */
 
 button.submit {
   float: right;
