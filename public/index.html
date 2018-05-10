@@ -20,13 +20,13 @@
   <script src="https://code.jquery.com/jquery.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
-  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> -->
+  <!-- <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script> -->
   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="js/parallax.min.js"></script>
 </head>
 
-<body>
+<body class='bg-dark'>
   <header>
     <div class="bg-dark collapse" id="navbarHeader">
       <div class="container">
@@ -54,7 +54,7 @@
         <a href="/index" class="navbar-brand d-flex align-items-center">
           <strong>Slack Overflow</strong>
         </a>
-          <!-- add to slack button commented Out -->
+        <!-- add to slack button commented Out -->
         <!-- <span class="slack-bot">
           <a href="/slack/authorization">
             <img alt="Add to Slack" height="40" width="139" src="https://platform.slack-edge.com/img/add_to_slack.png" srcset="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x"
@@ -66,7 +66,7 @@
           <button id="postBtn" type="button" class="btn btn-lg btn-dark" data-toggle="modal" data-target="#postModal">Add Post
           </button>
         </div>
-      
+
 
 
         <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader"
@@ -81,9 +81,7 @@
 
   <!-- <main role="main"> -->
 
-
-  <div class="parallax-window" data-parallax="scroll" data-image-src="../images/background2.png">
-
+  <div class="parallax-css">
 
     <!-- logo container -->
     <div class="container text-center">
@@ -93,7 +91,7 @@
         </div>
       </div>
     </div>
-   
+
     <!-- Modal for Posting -->
     <div class="modal fade" id="postModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
       <div class="modal-dialog" role="document">
@@ -137,13 +135,13 @@
                     <option value="Podcasts">Podcasts</option>
                   </select>
                 </div>
-                <button id="submitBtn" type="submit" class="btn btn-dark submit btn-lg" >Submit</button>
+                <button id="submitBtn" type="submit" class="btn btn-dark submit btn-lg">Submit</button>
                 <br/>
-               
+
               </div>
             </form>
           </div>
-         
+
         </div>
       </div>
     </div>
@@ -162,14 +160,8 @@
         </div>
       </div>
     </div>
-  </div>
 
-  <div>
-
-    <br>
-    <br>
-
-  </div>
+  </div>  <!-- End of parallax div? -->
 
   <div class="container" style="width: 95%">
     <div class="row">
@@ -180,7 +172,7 @@
 
   <!-- </main> -->
 
-  <footer class="text-muted footer">
+  <footer class="text-dark footer">
     <div class="container">
       <p class="float-right">
         <a href="#">Back to top</a>
