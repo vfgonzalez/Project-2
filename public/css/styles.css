@@ -21,6 +21,10 @@
 
 /* Lopes additions */
 
+#parallax-container {
+margin-bottom:-68px;
+}
+
 button.submit {
   float: right;
 }
