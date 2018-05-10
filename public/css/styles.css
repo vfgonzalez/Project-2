@@ -7,10 +7,6 @@
 }
 
 
-/* #cardSection  {
-  margin-top: 5%;
-  margin-bottom: -10px;
-} */
 
 .modal-body {
   position: relative;
@@ -25,6 +21,10 @@
   margin-left: -70%;
   padding: 5px 10px;
 }
+/* #cardSection  {
+  margin-top: 5%;
+  margin-bottom: -10px;
+} */
 
 #submitBtn{
   float: none
