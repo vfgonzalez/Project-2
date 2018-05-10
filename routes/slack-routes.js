@@ -9,7 +9,7 @@ const https = require('https');
 var db = require("../models");
 const moment = require("moment");
 const express = require('express');
-// var https = require("https")
+var https = require("https")
 const bodyParser = require('body-parser');
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 var userMsg
@@ -68,13 +68,13 @@ app.get('/slack/authorization', (req, res) => {
   res.send('<a href="/auth/slack"><img alt="Add to Slack" height="40" width="139" src="https://platform.slack-edge.com/img/add_to_slack.png" srcset="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x" /></a>');
 });
 app.get('/auth/slack', passport.authenticate('slack', {
-  scope: ['bot'], team : process.env.SLACK_TEAM_ID
+  scope: ['bot']
 }));
 app.get('/auth/slack/callback',
   passport.authenticate('slack', { session: false }),
   (req, res) => {
     // res.send('<p>Slack Overflow was successfully installed on your team.</p>');
-    res.redirect("/auth/slack/callback")
+    res.redirect("/")
   },
   (err, req, res, next) => {
     res.status(500).send(`<p>Greet and React failed to install</p> <pre>${err}</pre>`);
