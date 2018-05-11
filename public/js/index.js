@@ -305,7 +305,7 @@ $('#catCard').append(`
   function displayEmpty() {
     blogContainer.empty();
     var messageH2 = $("<h2>");
-    messageH2.css({ "text-align": "center", "margin-top": "50px" });
+    messageH2.css({ "text-align": "center", "margin-top": "50px","color":"gray" });
     messageH2.html('No posts yet for this category. Click "Add Post" at top of page');
     blogContainer.append(messageH2);
   }

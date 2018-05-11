@@ -5,6 +5,9 @@
   height:250px;
 }
 
+#postBtn{
+  margin-left: -45%
+}
 
 button.submit {
   text-align: center
