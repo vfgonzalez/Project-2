@@ -1,93 +1,90 @@
 $(document).ready(function () {
  
 
-  getPosts();
+  // getPosts();
 
   var catArr = [
 
     {
       name: "General Tools",
-      image: "./images/generaltools.jpg",
+      image: "./images/generaltools.png",
       description: "Enter text here",
     },
     {
       name: "Teaching Resources",
-      image: "./images/teachingresources.jpg",
+      image: "./images/teachingresources.png",
       description: "Enter text here",
     },
     {
       name: "CSS",
-      image: "./images/css.jpg",
+      image: "./images/css.png",
       description: "Enter text here",
     },
     {
       name: "Testing",
-      image: "./images/testing.jpg",
+      image: "./images/testing.png",
       description: "Enter text here",
     },
     {
       name: "JavaScript",
-      image: "./images/javascript.jpg",
-      description: "Enter text here",
-    },
-    {
-      name: "Articles",
-      image: "/images/articles.jpg",
+      image: "./images/javascript.png",
       description: "Enter text here",
     },
     {
       name: "APIs",
-      image: "./images/api.jpg",
+      image: "./images/api.png",
       description: "Enter text here",
     },
     {
       name: "Databases",
-      image: "./images/databases.jpg",
+      image: "./images/databases.png",
       description: "Enter text here",
     },
     {
       name: "NPM Packages",
-      image: "./images/npmpackages.jpg",
+      image: "./images/npmpackages.png",
       description: "Enter text here",
     },
     {
       name: "Templates",
-      image: "./images/templates.jpg",
+      image: "./images/templates.png",
       description: "Enter text here",
     },
     {
       name: "Common Issues",
-      image: "./images/commonissues.jpg",
+      image: "./images/commonissues.png",
       description: "Enter text here",
     },
     {
       name: "Job Resources",
-      image: "./images/jobresources.jpg",
+      image: "./images/jobresources.png",
       description: "Enter text here",
     },
     {
       name: "HTML",
-      image: "./images/html.jpg",
+      image: "./images/html.png",
       description: "Enter text here",
     },
     {
       name: "Random",
-      image: "./images/random.jpg",
+      image: "./images/random.png",
+      description: "Enter text here",
+    },
+    {
+      name: "Podcasts",
+      image: "./images/podcasts.png",
+      description: "Enter text here",
+    },
+    {
+      name: "Slack",
+      image: "./images/slacksubmissions.png",
+      description: "Enter text here",
+    },
+    {
+      name: "Twilio",
+      image: "./images/textsubmissions.png",
       description: "Enter text here",
     }
-
-    // {
-    //   name: "Slack",
-    //   image: "https://upload.wikimedia.org/wikipedia/commons/9/99/Unofficial_JavaScript_logo_2.svg",
-    //   description: "Enter text here",
-    // },
-    // {
-    //   name: "Twilio",
-    //   image: "https://upload.wikimedia.org/wikipedia/commons/9/99/Unofficial_JavaScript_logo_2.svg",
-    //   description: "Enter text here",
-    // }
-
-
   ]
 
 
@@ -142,6 +139,7 @@ $('#catCard').append(`
 
   // postCategorySelect.on("change", handleCategoryChange); -- old code related to dropdown
   postCategorySel.on("click", handleCategoryChange2);
+
   // $(document).on("click", ".name", handleCategoryChange2);
  
   var post;
@@ -191,7 +189,7 @@ $('#catCard').append(`
     var newPostCard = $("<div>");
     newPostCard.addClass("card");
     var newPostCardHeading = $("<div>");
-    newPostCardHeading.addClass("card-header");
+    newPostCardHeading.addClass("card-header bg-light");
     var downVoteBtn = $("<button>");
     downVoteBtn.text("Down");
     downVoteBtn.addClass("downVote "+post.category+" btn btn-danger");
@@ -308,7 +306,7 @@ $('#catCard').append(`
     blogContainer.empty();
     var messageH2 = $("<h2>");
     messageH2.css({ "text-align": "center", "margin-top": "50px" });
-    messageH2.html("No posts yet for this category, navigate <a href='/post'>here</a> in order to create a new post.");
+    messageH2.html('No posts yet for this category. Click "Add Post" at top of page');
     blogContainer.append(messageH2);
   }
 
@@ -330,8 +328,9 @@ $('#catCard').append(`
 
   // Scroll to function. When card button is clicked, go to div associated with the .blog-container class. 
   $(".name").click(function () {
+    $('.blog-container').css('margin', '5% 0')
     $('html,body').animate({
-      scrollTop: $(".blog-container").offset().top
+      scrollTop: $(".blog-container").offset().top -100
     },
       'slow');
   });
