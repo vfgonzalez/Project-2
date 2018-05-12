@@ -223,7 +223,7 @@ $('#catCard').append(`
     var newPostTitle = $("<h2>");
     var newPostDate = $("<small>");
     var newPostCategory = $("<h5>");
-    var newPostLink = $("<a target='_blank href=" + post.link + ">")
+    var newPostLink = $("<a target='_blank' href=" + post.link + ">")
     newPostLink.text(post.link)
     newPostCategory.text(post.category);
     newPostCategory.css({
