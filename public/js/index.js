@@ -76,12 +76,12 @@ $(document).ready(function () {
       description: "Enter text here",
     },
     {
-      name: "Slack",
+      name: "Slack Submissions",
       image: "./images/slacksubmissions.png",
       description: "Enter text here",
     },
     {
-      name: "Twilio",
+      name: "Text Submissions",
       image: "./images/textsubmissions.png",
       description: "Enter text here",
     }
