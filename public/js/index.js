@@ -11,7 +11,7 @@ $(document).ready(function () {
       description: "Enter text here",
     },
     {
-      name: "Teaching Resource",
+      name: "Teaching Resources",
       image: "./images/teachingresources.png",
       description: "Enter text here",
     },
