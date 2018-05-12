@@ -64,7 +64,7 @@ module.exports = function (app) {
         smsPostObj = {
           link: dataArr,
           author: "Mobile User on " + postingStamp,
-          category: "Text Submission",
+          category: "Text Submissions",
           title: "Mobile Submission",
           description: "Shared link using Twilio Number"
         }

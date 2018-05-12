@@ -106,7 +106,7 @@ slackEvents.on('app_mention', (message, body) => {
     db.resources.create({
       title: "Slack Submission",
       description: "Shared link via Slackbot",
-      category: "Slack Link",
+      category: "Slack Submissions",
       link : url,
       author : "Slack User on " + postingStamp
 
