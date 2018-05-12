@@ -82,7 +82,7 @@ module.exports = function (app) {
     db.resources.create({
       title: "Mobile Submission",
       description: "Shared link via Slack Text",
-      category: "Mobile Link",
+      category: "Text Submissions",
       link : req.body.Body,
       author : "Mobile User on " + postingStamp
 
