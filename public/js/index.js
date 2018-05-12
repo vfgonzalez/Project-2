@@ -11,7 +11,7 @@ $(document).ready(function () {
       description: "Enter text here",
     },
     {
-      name: "Teaching Resources",
+      name: "Teaching Resource",
       image: "./images/teachingresources.png",
       description: "Enter text here",
     },
@@ -26,12 +26,12 @@ $(document).ready(function () {
       description: "Enter text here",
     },
     {
-      name: "JavaScript",
+      name: "Javascript",
       image: "./images/javascript.png",
       description: "Enter text here",
     },
     {
-      name: "APIs",
+      name: "API",
       image: "./images/api.png",
       description: "Enter text here",
     },
