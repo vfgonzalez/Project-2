@@ -18,20 +18,20 @@ Slack Overflow uses a number of open source projects to work properly:
 * [Google Fonts] - Making the web more beautiful, fast, and open through great typography.
 ### Screenshots
 Landing Page of the Site
-![Full Site](/fullsitess.jpg "Optional Title")
+![Full Site](./public/images/fullsitess.jpg "Optional Title")
 ___
 Individual post display listed by the category that was selected above
     - Ability to upvote and down vote.
-![Posts](/postsss.jpg "Optional Title")
+![Posts](./public/images/postsss.jpg "Optional Title")
 ___
 Ability to enter a post manually not using
-![Manual Entry](/manualentryss.jpg "Optional Title")
+![Manual Entry](./public/images/manualentryss.jpg "Optional Title")
 ___
 Dropdown menu displaying team bio and link to github
-![Bio](/bioss.jpg "Optional Title")
+![Bio](./public/images/bioss.jpg "Optional Title")
 ___
 View of interaction between user and twilio technology via text
-![Text](/textss.jpg "Optional Title")
+![Text](./public/images/textss.jpg "Optional Title")
 [Passport]: https://www.npmjs.com/package/passport
 [Slack Client]: https://www.npmjs.com/package/@slack/client
 [Slack Events API]: https://www.npmjs.com/package/@slack/events-api
