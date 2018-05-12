@@ -118,7 +118,7 @@ slackEvents.on('app_mention', (message, body) => {
 
     
     // Respond to the message back in the same channel
-    slack.chat.postMessage({ channel: message.channel, text: `:tada: Hooray! Thanks <@${message.user}>, your post has been added to www.slackerflow.herokuapp.com !  ` })
+    slack.chat.postMessage({ channel: message.channel, text: `:tada: Hooray! Thanks <@${message.user}>, your post has been added to https://slackerflow.herokuapp.com !  ` })
       .catch(console.error);
     // // Respond to the message back in the same channel
     // slack.chat.postMessage(message.channel, text:`I Received your message`)

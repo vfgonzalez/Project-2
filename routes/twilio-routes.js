@@ -49,7 +49,7 @@ module.exports = function (app) {
   app.post('/sms', (req, res, next) => {
     const twiml = new MessagingResponse();
     // ===initial message, auto reply
-    twiml.message('Welcome to Slack overflow! Thanks for sharing your link! Visit us at www.slackerflow.herokuapp.com !');
+    twiml.message('Welcome to Slack overflow! Thanks for sharing your link! Visit us at https://slackerflow.herokuapp.com !');
     res.writeHead(200, { 'Content-Type': 'text/xml' });
 
     client.messages.each({
@@ -64,7 +64,7 @@ module.exports = function (app) {
         smsPostObj = {
           link: dataArr,
           author: "Mobile User on " + postingStamp,
-          category: "Mobile Link",
+          category: "Text Submission",
           title: "Mobile Submission",
           description: "Shared link using Twilio Number"
         }
