@@ -4,7 +4,7 @@ Slack Overflow is a tool build by students to store and categorize resrouce link
  - Interact with the bot through Slack
  - Text 1/800
  
- ####Developers
+ #### Developers
  -Christian Lopes : Front End Developer
  - Gavin Quirk : Back End Developer 
  - Jeremy Knappe : Front End Developer
